@@ -1,0 +1,35 @@
+html body{
+    background: #C1CBC6;
+}
+
+.card-inventario, .card-estatisticas {
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+.card-text{
+    text-align: justify;
+}
+
+.card-title{
+    padding-bottom: 5px;
+}
+
+.title {
+    text-align: center;
+    margin-top: 20px;   
+    font-size: 30px;    
+
+}
+
+.card-img-top {
+    padding-top: 4px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-bottom: 10px;
+
+}
+
+.a {
+    margin: 0 5px 5px 5px;
+}
