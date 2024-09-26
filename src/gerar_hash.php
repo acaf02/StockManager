@@ -1,6 +1,6 @@
 <?php
 // A senha em texto simples que você deseja inserir no banco de dados
-$senha = 'ana123';
+$senha = 'sua senha';
 
 // Gera o hash da senha
 $hash = password_hash($senha, PASSWORD_DEFAULT);
