@@ -1,32 +1,33 @@
 $(document).ready(function() {
     $("#login").on('click', function() {
-        var login_funcionario = $("#login_funcionario").val();
-        var senha = $("#senha").val();
+        var username = $("#username").val();
+        var password = $("#password").val();
 
-        if (login_funcionario == "" || senha == "")
+        if (username === "" || password === "") {
             alert("Erro em login ou senha");
-        else {
+        } else {
             $.ajax({
                 url: 'index.php',
                 method: 'POST',
                 data: {
                     login: 1,
-                    login_funcionario: login_funcionario,
-                    senha: senha
+                    username: username,
+                    password: password
                 },
                 success: function(response) {
-                    console.log(response);
-                    if (response.trim() == 'success') {
+                    response = response.trim();
+                    if (response === 'success') {
                         alert("Login bem-sucedido");
-                        window.location.href = "./inicio/inicio.php"
+                        window.location.href = "../inicio/inicio.php";
                     } else {
-                        alert("Falha no login. Verifique seu nome de usuário e senha.");
+                        alert(response); 
                     }
                 },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error: " + status + " - " + error);
+                },
                 dataType: 'text'
-            })
-
+            });
         }
-
     });
 });
