@@ -91,41 +91,8 @@ if (isset($_POST['login'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#login").on('click', function() {
-                var username = $("#username").val();
-                var password = $("#password").val();
 
-                if (username === "" || password === "") {
-                    alert("Erro em login ou senha");
-                } else {
-                    $.ajax({
-                        url: 'index.php',
-                        method: 'POST',
-                        data: {
-                            login: 1,
-                            username: username,
-                            password: password
-                        },
-                        success: function(response) {
-                            response = response.trim();
-                            if (response === 'success') {
-                                alert("Login bem-sucedido");
-                                window.location.href = "../inicio/inicio.php";
-                            } else {
-                                alert(response); // Menssgem de erro
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error("AJAX Error: " + status + " - " + error);
-                        },
-                        dataType: 'text'
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="index.js"></script>
 </body>
 
 </html>
