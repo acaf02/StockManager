@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Verifica se a preparação da consulta foi bem-sucedida
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "sdiiii", $produto, $peso, $unidade, $quantidade, $estoque_min, $estoque_medio);
+        mysqli_stmt_bind_param($stmt, "sdsiii", $produto, $peso, $unidade, $quantidade, $estoque_min, $estoque_medio);
 
         // Executa a consulta
         if (mysqli_stmt_execute($stmt)) {
