@@ -1,8 +1,8 @@
 $.ajax({
     type: 'POST',
-    url: 'cadastro.php', // URL onde os dados serão enviados
+    url: 'cadastro.php',
     data: formData,
-    dataType: 'json', // Esperamos uma resposta JSON
+    dataType: 'json', 
     success: function(response) {
         if (response.success) {
             alert(response.message);
