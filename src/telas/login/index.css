@@ -20,7 +20,7 @@ html{
 
 .login-box .user-box input {
     width: 100%;
-    padding: 10px 0;
+    padding: 10px; /* Adicionando padding superior e inferior */
     font-size: 16px;
     color: #000000;
     margin-bottom: 30px;
@@ -34,7 +34,7 @@ html{
     position: absolute;
     top: 0;
     left: 0;
-    padding: 10px 0;
+    padding: 10px 10px;
     padding-left: 10px;
     font-size: 16px;
     color: #000000;
@@ -42,17 +42,16 @@ html{
     transition: 0.6;
 }
 
-.login-box .user-box input:focus ~label,
-.login-box .user-box input:valid ~label {
-top:-30px;
-left: 0;
-color: #000000;
-font-size: 16px;
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+    top: -30px;
+    left: 0;
+    color: #000000;
+    font-size: 16px;
 }
 
-
 input[type="button"] {
-    background: #C1CBC6;
+    background: #5D7262; /* Um verde suave */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -63,5 +62,25 @@ input[type="button"] {
 }
 
 input[type="button"]:hover {
-    background: #D9D9D9;
+    background: #7A9380; /* Um verde levemente mais claro para o hover */
+}
+
+.user-box {
+    position: relative;
+}
+
+#icones {
+    position: absolute;
+    top: 28%;
+    right: 15px;
+
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#icones.hide {
+    background: url('../../assets/imagens/hide.png') no-repeat;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
 }
