@@ -10,10 +10,10 @@ CREATE TABLE login (
 CREATE TABLE insumo (
     cod_insumo INT PRIMARY KEY,              -- Código do insumo
     produto VARCHAR(100) NOT NULL,              -- Nome do insumo
-    peso DECIMAL(10, 2) NOT NULL,            -- Peso do insumo
+    peso INT NOT NULL,            -- Peso do insumo
     unidade VARCHAR(10) NOT NULL,            -- Unidade de medida (ex: kg, g, l)
-    quantidade DECIMAL(10, 2) NOT NULL,      -- Quantidade disponível
-    estoque_min DECIMAL(10, 2) NOT NULL,     -- Estoque mínimo
-    estoque_medio DECIMAL(10, 2) NOT NULL,     -- Estoque máximo
-    consumo_insumo DECIMAL(10, 2) NOT NULL   -- Quantidade consumida do insumo
+    quantidade INT NOT NULL,      -- Quantidade disponível
+    estoque_min INT NOT NULL,     -- Estoque mínimo
+    estoque_medio INT NOT NULL,     -- Estoque máximo
+    consumo_insumo INT NOT NULL   -- Quantidade consumida do insumo
 );
