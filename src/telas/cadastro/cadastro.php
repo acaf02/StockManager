@@ -122,7 +122,7 @@ mysqli_close($connection);
                     </div>
                 </div>
 
-                <div class="text-center" style="padding=40px; ">
+                <div style="text-align: right; padding:10px 0;">
                     <button type="submit" class="btn btn-success" id="submit">Cadastrar</button>
                     <a href="../inicio/inicio.php" class="btn btn-danger">Cancelar</a>
                 </div>
