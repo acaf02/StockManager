@@ -1,3 +1,23 @@
+<?php
+include_once "../../db/db_connection.php";
+
+// Verifica se há pesquisa e cria a consulta apropriada
+if (!empty($_GET['pesquisar'])) {
+    $data = $_GET['pesquisar'];
+    $data = mysqli_real_escape_string($connection, $data);
+    $sql = "SELECT * FROM insumo WHERE produto LIKE '%$data%' ORDER BY cod_insumo ASC";
+} else {
+    $sql = "SELECT * FROM insumo ORDER BY cod_insumo ASC";
+}
+
+
+$result = mysqli_query($connection, $sql);
+
+if (!$result) {
+    die("Erro na consulta: " . mysqli_error($connection));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -33,12 +53,14 @@
             <a href="../cadastro/cadastro.php" class="btn btn-dark mx-2">
                 <i class="fa-solid fa-circle-plus"></i> Cadastrar
             </a>
-            <div class="search-container">
-                <input type="text" class="form-control" placeholder="Pesquisar...">
+
+            <div class="box-search">
+                <input type="search" class="form-control" placeholder="Pesquisar" id="pesquisar">
             </div>
-            <button class="btn btn-dark">
+            <button onclick="pesquisarDados()" class="btn btn-dark" style="height: 38px;">
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
             </button>
+
             <i class="fa fa-sliders mx-2" style="font-size:30px; padding:6px;"></i>
         </div>
 
@@ -52,20 +74,16 @@
             </thead>
             <tbody>
                 <?php
-                // Conexão com o banco de dados
-                include "../../db/db_connection.php";
-
-                // Query para selecionar todos os registros
-                $sql = "SELECT * FROM `insumo`";
-                $result = mysqli_query($connection, $sql);
-
                 // Loop para exibir os dados em uma tabela
                 while ($row = mysqli_fetch_assoc($result)) {
                     ?>
                     <tr>
-                        <td><?php echo $row['produto'] ?></td>
-                        <td><?php echo $row['peso'] . ' ' . $row['unidade']; ?></td>
-                        <td><?php echo $row['quantidade'] ?></td>
+                        <td><a href="../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>"
+                                class="text-decoration-none" style="color: black;">
+                                <?php echo htmlspecialchars($row['produto']); ?>
+                            </a></td>
+                        <td><?php echo htmlspecialchars($row['peso'] . ' ' . $row['unidade']); ?></td>
+                        <td><?php echo htmlspecialchars($row['quantidade']); ?></td>
                     </tr>
                     <?php
                 }
@@ -75,6 +93,21 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        var pesquisa = document.getElementById('pesquisar');
+
+        pesquisa.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                pesquisarDados();
+            }
+        });
+
+        function pesquisarDados() {
+            var query = pesquisa.value;
+            window.location = 'estoque.php?pesquisar=' + encodeURIComponent(query);
+        }
+    </script>
 </body>
 
 </html>
