@@ -4,6 +4,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/SM/src/db/db_connection.php");
  // se tu for na url dos modals aparece isso {"status":"error","message":"M\u00e9todo inv\u00e1lido."}
  // e tipo ta pegando GET só que continua funcionando a função aqui em baixo só q eu acho q por
  //ta pegando ger ta dando esse else lá embaixo
+ // mesmo erro acontece em retirar.php
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Verifique se é uma requisição POST
     // Verifica se os parâmetros estão presentes
