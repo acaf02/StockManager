@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="gerenciar.css">
+    <link rel="stylesheet" href="gerenciar.css">
+    <title>Dashboard</title>
     <?php include "../../componentes/headers.php";
 
     ?>
@@ -17,7 +18,7 @@
 <body>
 
     <?php
-    include "../../db/db_connection.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/SM/src/db/db_connection.php";
 
     // Verifica se há pesquisa e cria a consulta apropriada
     if (!empty($_GET['pesquisar'])) {
@@ -40,7 +41,8 @@
     include_once('../../componentes/navbar.php');
     include_once('modals/adicionar.php');
     include_once('modals/retirar.php');
-   
+    include_once('modals/editar.php');
+
     ?>
 
     <div class="container" style="padding:20px;">
@@ -70,16 +72,20 @@
                     <th scope="col">Quantidade</th>
                     <th scope="col">Entrada</th>
                     <th scope="col">Saída</th>
+                    <th scope="col">Editar</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                
+
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
                         ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($row['produto']); ?></td>
+                            <td><a href="../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>"
+                                    class="text-decoration" style="color: black;">
+                                    <?php echo htmlspecialchars($row['produto']); ?>
+                                </a></td>
                             <td><?php echo htmlspecialchars($row['peso'] . ' ' . $row['unidade']); ?></td>
                             <td><?php echo htmlspecialchars($row['quantidade']); ?></td>
                             <td>
@@ -96,16 +102,23 @@
                                     <i class="fa-regular fa-square-minus" style="color: red; font-size:20px;"></i>
                                 </a>
                             </td>
+                            <td>
+                                <a href="javascript:void(0)" class="open-modal-editar"
+                                data-cod_insumo="<?php echo $row['cod_insumo']; ?>">
+                                <i class="fa-regular fa-pen-to-square" style="font-size:20px;"></i>
+                                </a>
+                            </td>
+
                         </tr>
 
-                        
+
                         <?php
                     }
                 } else {
                     echo "<tr><td colspan='5'>Nenhum insumo encontrado</td></tr>";
                 }
 
-                
+
                 ?>
             </tbody>
         </table>
