@@ -1,5 +1,6 @@
 $(document).ready(function () {
-  $("#login").on("click", function () {
+  // Função de login
+  function realizarLogin() {
     var username = $("#username").val();
     var password = $("#password").val();
 
@@ -17,7 +18,6 @@ $(document).ready(function () {
         success: function (response) {
           response = response.trim();
           if (response === "success") {
-            alert("Login bem-sucedido");
             window.location.href = "../inicio/inicio.php";
           } else {
             alert(response);
@@ -29,10 +29,20 @@ $(document).ready(function () {
         dataType: "text",
       });
     }
+  }
+
+  // Evento de clique no botão de login
+  $("#login").on("click", function () {
+    realizarLogin();
+  });
+
+  // Evento para capturar a tecla Enter e acionar o login
+  $(document).on("keypress", function (e) {
+    if (e.which === 13) { // Código 13 corresponde à tecla Enter
+      realizarLogin();
+    }
   });
 });
-
-
 
 //funcção para icone de mostrar e esconder senha
 const password = document.getElementById("password");
