@@ -14,6 +14,7 @@ if (!isset($_SESSION['loggedIn'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="inicio.css">
+    <title>Inicio</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -23,7 +24,7 @@ if (!isset($_SESSION['loggedIn'])) {
 
     <style>
         .card-custom {
-            width: 260px;
+            width: 300px;
             margin: 10px;
         }
     </style>
@@ -39,7 +40,7 @@ include_once('../../componentes/navbar.php');
 
 
     <div class="container">
-        <div class="row justify-content-center cards-row" style="padding-top:25px;">
+        <div class="row justify-content-center cards-row" style="padding-top:100px;">
             <div class="card card-custom card-estoque">
                 <img class="card-img-top" src="../../assets/imagens/estoque.png" alt="Gerenciar Estoque">
                 <div class="card-body">
