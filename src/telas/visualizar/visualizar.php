@@ -4,7 +4,7 @@ include "../../db/db_connection.php";
 // Verifica se o código do insumo foi passado na URL
 if (!empty($_GET['cod_insumo'])) {
     $cod_insumo = $_GET['cod_insumo'];
-    
+
     $sql = "SELECT * FROM insumo WHERE cod_insumo = ?";
     $stmt = mysqli_prepare($connection, $sql);
     mysqli_stmt_bind_param($stmt, "s", $cod_insumo);
@@ -37,6 +37,7 @@ if (!empty($_GET['cod_insumo'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="visualizar.css">
+    <title>Visualizar</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -58,46 +59,52 @@ if (!empty($_GET['cod_insumo'])) {
     ?>
 
     <div class="container" style="padding: 30px;">
-        <div style="text-align: right; padding: 40px;">
+        <div class="text-center mb-4">
             <h3 style="text-align: center;">Visualização de Insumo</h3>
-            <a href="deletar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>" class="btn btn-danger">Excluir</a>
+            <p class="text-muted">Visualização dos detalhes do produto abaixo.</p>
         </div>
 
-
-    
-        <div class="container d-flex justify-content-center">
+        <div class="container d-flex justify-content-center" style="background-color= #ACB2AD">
             <form style="width:50vw; min-width:300px;" id="formulario-insumo">
                 <div class="row mb-3">
                     <div class="mb-3">
                         <label class="form-label">Produto</label>
                         <input type="text" class="form-control" id="produto" name="produto"
-                           value="<?php echo $produto;?>" readonly>
+                            value="<?php echo $produto; ?>" readonly>
                     </div>
 
                     <div class="col mb-3">
                         <label class="form-label">Peso</label>
-                        <input type="number" class="form-control" id="peso" name="peso" 
-                        value="<?php echo $peso; ?>" readonly>
+                        <input type="number" class="form-control" id="peso" name="peso" value="<?php echo $peso; ?>"
+                            readonly>
                     </div>
 
                     <div class="col mb-3">
                         <label class="form-label">Unidade</label>
                         <select class="form-control" id="unidade" name="unidade" disabled>
                             <option value="">Selecione</option>
-                            <option value="kg" <?php if ($unidade == 'kg') echo 'selected'; ?>>kg</option>
-                            <option value="g" <?php if ($unidade == 'g') echo 'selected'; ?>>g</option>
-                            <option value="L" <?php if ($unidade == 'L') echo 'selected'; ?>>L</option>
-                            <option value="mL" <?php if ($unidade == 'mL') echo 'selected'; ?>>mL</option>
-                            <option value="ton" <?php if($unidade == 'ton') echo 'selected'; ?>>ton</option>
-                            <option value="un" <?php if($unidade == 'un') echo 'selected'; ?>>un</option>
-                            <option value="m" <?php if($unidade == 'm') echo 'selected'; ?>>m</option>
-                            <option value="cm" <?php if($unidade == 'cm') echo 'selected'; ?>>cm</option>
+                            <option value="kg" <?php if ($unidade == 'kg')
+                                echo 'selected'; ?>>kg</option>
+                            <option value="g" <?php if ($unidade == 'g')
+                                echo 'selected'; ?>>g</option>
+                            <option value="L" <?php if ($unidade == 'L')
+                                echo 'selected'; ?>>L</option>
+                            <option value="mL" <?php if ($unidade == 'mL')
+                                echo 'selected'; ?>>mL</option>
+                            <option value="ton" <?php if ($unidade == 'ton')
+                                echo 'selected'; ?>>ton</option>
+                            <option value="un" <?php if ($unidade == 'un')
+                                echo 'selected'; ?>>un</option>
+                            <option value="m" <?php if ($unidade == 'm')
+                                echo 'selected'; ?>>m</option>
+                            <option value="cm" <?php if ($unidade == 'cm')
+                                echo 'selected'; ?>>cm</option>
                         </select>
                     </div>
                     <div class="col mb-3">
                         <label class="form-label">Quantidade Inicial</label>
-                        <input type="number" class="form-control" id="quantidade" name="quantidade" 
-                        value="<?php echo $quantidade ?>" readonly>
+                        <input type="number" class="form-control" id="quantidade" name="quantidade"
+                            value="<?php echo $quantidade ?>" readonly>
                     </div>
                 </div>
 
@@ -114,9 +121,16 @@ if (!empty($_GET['cod_insumo'])) {
                             value="<?php echo $estoque_medio ?>" readonly>
                     </div>
                 </div>
-
+                <div style="text-align: right; ">
+                    <a href="deletar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>"
+                        class="btn btn-success m-2">Editar</a>
+                    <a href="deletar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>"
+                        class="btn btn-danger">Excluir</a>
+                </div>
             </form>
+
         </div>
+
     </div>
 
     <!-- JQuery -->
@@ -128,7 +142,7 @@ if (!empty($_GET['cod_insumo'])) {
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-    <script src="cadastro.js"></script>
+
 </body>
 
 </html>
