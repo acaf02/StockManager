@@ -1,5 +1,5 @@
 <?php
-include_once "../../db/db_connection.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/SM/src/db/db_connection.php";
 
 // Verifica se há pesquisa e cria a consulta apropriada
 if (!empty($_GET['pesquisar'])) {
@@ -25,6 +25,7 @@ if (!$result) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estoque.css">
+    <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
@@ -79,7 +80,7 @@ if (!$result) {
                     ?>
                     <tr>
                         <td><a href="../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>"
-                                class="text-decoration-none" style="color: black;">
+                                class="text-decoration" style="color: black;">
                                 <?php echo htmlspecialchars($row['produto']); ?>
                             </a></td>
                         <td><?php echo htmlspecialchars($row['peso'] . ' ' . $row['unidade']); ?></td>
