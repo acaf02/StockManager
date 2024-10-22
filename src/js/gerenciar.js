@@ -25,4 +25,3 @@ $(document).on("click", ".open-modal-retirar", function(event) {
     
     modalRetirarInsumo.show();
 });
-
