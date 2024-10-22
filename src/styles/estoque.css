@@ -1,0 +1,18 @@
+html body{
+    background: #C1CBC6;
+}
+
+.box-container {
+    display: flex;
+    flex-direction: column; 
+}
+.search-input {
+    width: 200px; /* Largura fixa */
+    height: 48px;
+}
+.search-button {
+    border-radius: 25px; /* Bordas arredondadas */
+    padding: 10px; 
+    height: 60px;
+    width: 50px;
+}
