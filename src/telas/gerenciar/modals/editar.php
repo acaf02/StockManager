@@ -7,64 +7,43 @@ $peso = '';
 $unidade = '';
 $quantidade = '';
 $estoque_min = '';
-$estoque_medio = ''; 
+$estoque_medio = '';
 
-if (isset($_GET['cod_insumo'])) {
-    $cod_insumo = (int) $_GET['cod_insumo'];
 
-    // Consulta para obter os dados do insumo
-    $query = "SELECT * FROM insumo WHERE cod_insumo = ?";
-    $stmt = $connection->prepare($query);
-    $stmt->bind_param('i', $cod_insumo);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Verificar se encontrou o insumo
-    if ($row = $result->fetch_assoc()) {
-        $produto = $row['produto'];
-        $peso = $row['peso'];
-        $unidade = $row['unidade'];
-        $quantidade = $row['quantidade'];
-        $estoque_min = $row['estoque_min'];
-        $estoque_medio = $row['estoque_medio'];
-    } else {
-        echo "Insumo não encontrado!";
-        exit();
-    }
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Verifica se todos os campos necessários estão setados
     if (isset($_POST['cod_insumo'], $_POST['produto'], $_POST['peso'], $_POST['unidade'], $_POST['quantidade'], $_POST['estoque_min'], $_POST['estoque_medio'])) {
         $cod_insumo = (int) $_POST['cod_insumo'];
         $produto = $_POST['produto'];
-        $peso = (int) $_POST['peso'];
+        $peso = $_POST['peso'];
         $unidade = $_POST['unidade'];
-        $quantidade = (int) $_POST['quantidade'];
-        $estoque_min = (int) $_POST['estoque_min'];
-        $estoque_medio = (int) $_POST['estoque_medio'];
+        $quantidade = $_POST['quantidade'];
+        $estoque_min = $_POST['estoque_min'];
+        $estoque_medio = $_POST['estoque_medio'];
 
+        // Preparar a consulta para atualizar o insumo
         $query = "UPDATE insumo SET produto = ?, peso = ?, unidade = ?, quantidade = ?, estoque_min = ?, estoque_medio = ? WHERE cod_insumo = ?";
         $stmt = $connection->prepare($query);
-        if ($stmt) {
-            $stmt->bind_param('sisiii', $produto, $peso, $unidade, $quantidade, $estoque_min, $estoque_medio, $cod_insumo);
-            if ($stmt->execute()) {
-                echo json_encode(['status' => 'success', 'message' => 'Dados atualizados com sucesso!']);
-            } else {
-                echo json_encode(['status' => 'error', 'message' => 'Erro ao atualizar os dados.']);
-            }
-            $stmt->close();
+        $stmt->bind_param('sisiiii', $produto, $peso, $unidade, $quantidade, $estoque_min, $estoque_medio, $cod_insumo);
+
+        if ($stmt->execute()) {
+            // Se a atualização for bem-sucedida
+            echo json_encode(['status' => 'success', 'message' => 'Insumo editado com sucesso!']);
+            exit;
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Erro na preparação da consulta.']);
+            // Se houver erro na execução da consulta
+            echo json_encode(['status' => 'error', 'message' => 'Erro ao atualizar insumo.']);
+            exit;
         }
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Dados incompletos ou método inválido.']);
+        // Se algum dado obrigatório não foi recebido
+        echo json_encode(['status' => 'error', 'message' => 'Dados incompletos recebidos.']);
+        exit;
     }
-    $connection->close();
-    exit();
 }
 ?>
 
-<!-- Modal Editar -->
+<!-- modal para edição -->
 <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -79,101 +58,62 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="row mb-3">
                             <div class="mb-3">
                                 <label class="form-label">Produto</label>
-                                <input type="text" class="form-control" id="produto_modal" name="produto" value="<?php echo $produto; ?>" required>
+                                <input type="text" class="form-control" id="produto" name="produto"
+                                    value="<?php echo $produto; ?>">
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label">Peso</label>
-                                <input type="number" class="form-control" id="peso_modal" name="peso" value="<?php echo $peso; ?>" required>
+                                <input type="number" class="form-control" id="peso" name="peso"
+                                    value="<?php echo $peso; ?>">
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label">Unidade</label>
-                                <select class="form-control" id="unidade_modal" name="unidade" required>
+                                <select class="form-control" id="unidade" name="unidade">
                                     <option value="">Selecione</option>
-                                    <option value="kg" <?php if ($unidade == 'kg') echo 'selected'; ?>>kg</option>
-                                    <option value="g" <?php if ($unidade == 'g') echo 'selected'; ?>>g</option>
-                                    <option value="L" <?php if ($unidade == 'L') echo 'selected'; ?>>L</option>
-                                    <option value="mL" <?php if ($unidade == 'mL') echo 'selected'; ?>>mL</option>
-                                    <option value="ton" <?php if ($unidade == 'ton') echo 'selected'; ?>>ton</option>
-                                    <option value="un" <?php if ($unidade == 'un') echo 'selected'; ?>>un</option>
-                                    <option value="m" <?php if ($unidade == 'm') echo 'selected'; ?>>m</option>
-                                    <option value="cm" <?php if ($unidade == 'cm') echo 'selected'; ?>>cm</option>
+                                    <option value="kg" <?php if ($unidade == 'kg')
+                                        echo 'selected'; ?>>kg</option>
+                                    <option value="g" <?php if ($unidade == 'g')
+                                        echo 'selected'; ?>>g</option>
+                                    <option value="L" <?php if ($unidade == 'L')
+                                        echo 'selected'; ?>>L</option>
+                                    <option value="mL" <?php if ($unidade == 'mL')
+                                        echo 'selected'; ?>>mL</option>
+                                    <option value="ton" <?php if ($unidade == 'ton')
+                                        echo 'selected'; ?>>ton</option>
+                                    <option value="un" <?php if ($unidade == 'un')
+                                        echo 'selected'; ?>>un</option>
+                                    <option value="m" <?php if ($unidade == 'm')
+                                        echo 'selected'; ?>>m</option>
+                                    <option value="cm" <?php if ($unidade == 'cm')
+                                        echo 'selected'; ?>>cm</option>
                                 </select>
                             </div>
                             <div class="col mb-3">
-                                <label class="form-label">Quantidade Inicial</label>
-                                <input type="number" class="form-control" id="quantidade_modal" name="quantidade" value="<?php echo $quantidade ?>" required>
+                                <label class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" id="quantidade" name="quantidade"
+                                    value="<?php echo $quantidade; ?>">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col mb-3">
                                 <label class="form-label">Estoque Mínimo</label>
-                                <input type="number" class="form-control" id="estoque_min_modal" name="estoque_min" value="<?php echo $estoque_min ?>" required>
+                                <input type="number" class="form-control" id="estoque_min" name="estoque_min"
+                                    value="<?php echo $estoque_min; ?>">
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label">Estoque Médio</label>
-                                <input type="number" class="form-control" id="estoque_medio_modal" name="estoque_medio" value="<?php echo $estoque_medio ?>" required>
+                                <input type="number" class="form-control" id="estoque_medio" name="estoque_medio"
+                                    value="<?php echo $estoque_medio; ?>">
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnSalvar" class="btn btn-primary" data-cod_insumo="<?php echo $cod_insumo; ?>">Salvar</button>
+                <button type="button" class="btn btn-primary" id="btnSalvar">Salvar</button>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-$(document).on("click", "#btnSalvar", function (event) {
-    event.preventDefault();
-    var codInsumo = $(this).data("cod_insumo");
-    
-    // Obter os valores dos campos do modal
-    var produto = $("#produto_modal").val();
-    var peso = $("#peso_modal").val();
-    var unidade = $("#unidade_modal").val();
-    var quantidade = $("#quantidade_modal").val();
-    var estoqueMin = $("#estoque_min_modal").val();
-    var estoqueMedio = $("#estoque_medio_modal").val();
-
-    // Validação dos campos
-    if (!produto || !peso || !unidade || !quantidade || !estoqueMin || !estoqueMedio) {
-        alert("Por favor, preencha todos os campos com valores válidos.");
-        return;
-    }
-
-    $("#btnSalvar").prop('disabled', true);
-
-    fetch('modals/editar.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-            cod_insumo: codInsumo,
-            produto: produto,
-            peso: peso,
-            unidade: unidade,
-            quantidade: quantidade,
-            estoque_min: estoqueMin,
-            estoque_medio: estoqueMedio,
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === "success") {
-            alert(data.message);
-            window.location.reload();
-        } else {
-            alert("Erro: " + data.message);
-        }
-    })
-    .catch(error => {
-        alert("Erro ao enviar o formulário: " + error.message);
-    })
-    .finally(() => {
-        $("#btnSalvar").prop('disabled', false);
-    });
-});
-</script>
+<script src="../../js/editar.js"></script>
