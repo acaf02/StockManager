@@ -1,5 +1,5 @@
 <?php
-    include "verification.php";
+include "verification.php";
 ?>
 
 <!-- Modal Adicionar -->
@@ -39,30 +39,37 @@
             alert("Digite uma quantidade válida.");
             return;
         }
-        
+
         $("#btnAdicionar").prop('disabled', true);
 
-        fetch('modals/adicionar.php', {
+        // Enviando os dados via AJAX usando $.ajax()
+        $.ajax({
+            url: 'modals/adicionar.php',
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
+            data: {
                 cod_insumo: codInsumo,
                 quantidade: quantidade,
                 operation: 'adicionar'
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
+            },
+            dataType: 'json',
+            success: function (data) {
                 if (data.status === 'success') {
                     alert("Insumo adicionado com sucesso!");
-                    $('#modalAdicionarInsumo').modal('hide');
+
+                    // Recarrega a página automaticamente após a adição
                     window.location.reload();
                 } else {
                     console.error('Erro:', data.message);
                 }
-            })
-            .catch(error => console.error('Erro na requisição:', error));
+            },
+            error: function (xhr, status, error) {
+                console.error('Erro na requisição:', error);
+            },
+            complete: function () {
+                $("#btnAdicionar").prop('disabled', false);
+            }
+        });
     });
+
+
 </script>

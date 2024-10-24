@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="gerenciar.css">
+    <link rel="stylesheet" href="../../styles/gerenciar.css">
     <title>Dashboard</title>
     <?php include "../../componentes/headers.php";
 
@@ -104,9 +104,11 @@
                             </td>
                             <td>
                                 <a href="javascript:void(0)" class="open-modal-editar"
-                                data-cod_insumo="<?php echo $row['cod_insumo']; ?>">
-                                <i class="fa-regular fa-pen-to-square" style="font-size:20px;"></i>
+                                    data-cod-insumo="<?php echo $row['cod_insumo']; ?>">
+                                    <i class="fa-regular fa-pen-to-square" style="font-size:20px;"></i>
                                 </a>
+
+
                             </td>
 
                         </tr>
@@ -125,7 +127,8 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="gerenciar.js"></script>
+    <script src="../../js/gerenciar.js"></script>
+    <script src="../../js/abrir-modal-editar.js"></script>
 
     <script>
         // Evento para capturar a pesquisa via Enter

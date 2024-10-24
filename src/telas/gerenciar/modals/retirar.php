@@ -26,46 +26,47 @@
 </div>
 
 <script>
-    document.querySelector("#btnRetirar").addEventListener("click", async function() {
-        var codInsumo = document.querySelector("#modalRetirarInsumo").dataset.cod_insumo;  // Pegando o cod_insumo
-        console.log("Código do insumo enviado: ", codInsumo);  // Verificar o código do insumo
-        var quantidade = document.querySelector("#quantidade").value;
+    $(document).on("click", "#btnRetirar", function (event) {
+    event.preventDefault();
 
-        if (!quantidade || isNaN(quantidade) || parseInt(quantidade) <= 0) {
-            alert("Digite uma quantidade válida.");
-            return;
-        }
+    var codInsumo = $("#modalRetirarInsumo").data("cod_insumo"); // Pegando o cod_insumo
+    console.log("Código do insumo enviado: ", codInsumo); // Verificar o código do insumo
+    var quantidade = $("#quantidade").val();
 
-        document.querySelector("#btnRetirar").disabled = true;
+    if (!quantidade || isNaN(quantidade) || parseInt(quantidade) <= 0) {
+        alert("Digite uma quantidade válida.");
+        return;
+    }
 
-        try {
-            let response = await fetch('modals/retirar.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({
-                    'cod_insumo': codInsumo,
-                    'quantidade': quantidade,
-                    'operation': 'retirar'
-                })
-            });
+    $("#btnRetirar").prop('disabled', true);
 
-            let data = await response.json();
-            
+    $.ajax({
+        url: 'modals/retirar.php',
+        method: 'POST',
+        data: {
+            cod_insumo: codInsumo,
+            quantidade: quantidade,
+            operation: 'retirar'
+        },
+        dataType: 'json',
+        success: function (data) {
             if (data.status === 'success') {
                 alert("Insumo retirado com sucesso!");
                 $('#modalRetirarInsumo').modal('hide');
-                window.location.reload();
+                window.location.reload(); // Recarregar a página
             } else {
                 alert("Erro ao retirar insumo: " + data.message);
             }
-        } catch (error) {
-            alert("Erro na requisição: " + error.message);
-        } finally {
-            document.querySelector("#btnRetirar").disabled = false;
+        },
+        error: function (xhr, status, error) {
+            alert("Erro na requisição: " + error);
+        },
+        complete: function () {
+            $("#btnRetirar").prop('disabled', false);
         }
     });
+});
+
 
 
 </script>
