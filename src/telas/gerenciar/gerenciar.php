@@ -17,32 +17,19 @@
 
 <body>
 
-    <?php
+<?php
     include $_SERVER['DOCUMENT_ROOT'] . "/SM/src/db/db_connection.php";
 
-    // Verifica se há pesquisa e cria a consulta apropriada
-    if (!empty($_GET['pesquisar'])) {
-        $data = $_GET['pesquisar'];
-        $data = mysqli_real_escape_string($connection, $data);
-        $sql = "SELECT * FROM insumo WHERE produto LIKE '%$data%' ORDER BY cod_insumo ASC";
-    } else {
-        $sql = "SELECT * FROM insumo ORDER BY cod_insumo ASC";
-    }
-
-    // Executar a consulta
-    $result = mysqli_query($connection, $sql);
-
-    // Verifica se a consulta foi bem-sucedida
-    if (!$result) {
-        die("Erro na consulta: " . mysqli_error($connection));
-    }
+    // Define consulta SQL com base na pesquisa
+    $pesquisar = !empty($_GET['pesquisar']) ? mysqli_real_escape_string($connection, $_GET['pesquisar']) : '';
+    $sql = "SELECT * FROM insumo " . ($pesquisar ? "WHERE produto LIKE '%$pesquisar%'" : "") . " ORDER BY cod_insumo ASC";
+    $result = mysqli_query($connection, $sql) or die("Erro na consulta: " . mysqli_error($connection));
 
     include_once('../../componentes/header.php');
     include_once('../../componentes/navbar.php');
     include_once('modals/adicionar.php');
     include_once('modals/retirar.php');
     include_once('modals/editar.php');
-
     ?>
 
     <div class="container" style="padding:20px;">
@@ -51,15 +38,12 @@
             <a href="../cadastro/cadastro.php" class="btn btn-dark mx-2">
                 <i class="fa-solid fa-circle-plus"></i> Cadastrar
             </a>
-
-            <!-- Formulário para pesquisa com método GET -->
-            <form method="GET" action="gerenciar.php" class="d-flex align-items-center">
-                <input type="search" name="pesquisar" class="form-control" placeholder="Pesquisar" id="pesquisar"
-                    value="<?php echo isset($_GET['pesquisar']) ? htmlspecialchars($_GET['pesquisar']) : ''; ?>">
-                <button type="submit" class="btn btn-dark" style="height: 38px;">
-                    <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
+            <div class="position-relative" style="width: 300px;">
+                <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar" id="pesquisar"
+                       value="<?php echo htmlspecialchars($pesquisar); ?>" style="padding-left: 35px;">
+                <i class="fa-sharp fa-solid fa-magnifying-glass position-absolute"
+                   style="top: 50%; left: 10px; transform: translateY(-50%);"></i>
+            </div>
             <i class="fa fa-sliders mx-2" style="font-size:30px; padding:6px;"></i>
         </div>
 
@@ -72,7 +56,6 @@
                     <th scope="col">Quantidade</th>
                     <th scope="col">Entrada</th>
                     <th scope="col">Saída</th>
-                    <th scope="col">Editar</th>
                 </tr>
             </thead>
             <tbody>
@@ -102,14 +85,7 @@
                                     <i class="fa-regular fa-square-minus" style="color: red; font-size:20px;"></i>
                                 </a>
                             </td>
-                            <td>
-                                <a href="javascript:void(0)" class="open-modal-editar"
-                                    data-cod-insumo="<?php echo $row['cod_insumo']; ?>">
-                                    <i class="fa-regular fa-pen-to-square" style="font-size:20px;"></i>
-                                </a>
-
-
-                            </td>
+                            
 
                         </tr>
 
@@ -129,18 +105,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../../js/gerenciar.js"></script>
     <script src="../../js/abrir-modal-editar.js"></script>
+    <script src="../../js/pesquisa_gerenciar.js"></script>
 
-    <script>
-        // Evento para capturar a pesquisa via Enter
-        var pesquisa = document.getElementById('pesquisar');
-        pesquisa.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                pesquisa.form.submit();
-            }
-        });
-
-
-    </script>
 
 </body>
 

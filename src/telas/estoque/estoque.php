@@ -1,21 +1,10 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . "/SM/src/db/db_connection.php";
 
-// Verifica se há pesquisa e cria a consulta apropriada
-if (!empty($_GET['pesquisar'])) {
-    $data = $_GET['pesquisar'];
-    $data = mysqli_real_escape_string($connection, $data);
-    $sql = "SELECT * FROM insumo WHERE produto LIKE '%$data%' ORDER BY cod_insumo ASC";
-} else {
-    $sql = "SELECT * FROM insumo ORDER BY cod_insumo ASC";
-}
-
-
-$result = mysqli_query($connection, $sql);
-
-if (!$result) {
-    die("Erro na consulta: " . mysqli_error($connection));
-}
+// Define consulta SQL com base na pesquisa
+$pesquisa = !empty($_GET['pesquisar']) ? mysqli_real_escape_string($connection, $_GET['pesquisar']) : '';
+$sql = "SELECT * FROM insumo " . ($pesquisa ? "WHERE produto LIKE '%$pesquisa%'" : "") . " ORDER BY cod_insumo ASC";
+$result = mysqli_query($connection, $sql) or die("Erro na consulta: " . mysqli_error($connection));
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +13,7 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estoque.css">
+    <link rel="stylesheet" href="../../styles/estoque.css">
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -39,11 +28,10 @@ if (!$result) {
 
     <div class="container" style="padding:20px;">
         <?php
-        // Verifica se há uma mensagem para exibir
+        // Exibe mensagem de alerta, se houver
         if (isset($_GET['msg'])) {
-            $msg = $_GET['msg'];
             echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    ' . $msg . '
+                    ' . htmlspecialchars($_GET['msg']) . '
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
         }
@@ -55,12 +43,12 @@ if (!$result) {
                 <i class="fa-solid fa-circle-plus"></i> Cadastrar
             </a>
 
-            <div class="box-search">
-                <input type="search" class="form-control" placeholder="Pesquisar" id="pesquisar">
+            <div class="position-relative" style="width: 300px;">
+                <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar" id="pesquisar"
+                    value="<?php echo htmlspecialchars($pesquisa); ?>" style="padding-left: 35px;">
+                <i class="fa-sharp fa-solid fa-magnifying-glass position-absolute"
+                    style="top: 50%; left: 10px; transform: translateY(-50%);"></i>
             </div>
-            <button onclick="pesquisarDados()" class="btn btn-dark" style="height: 38px;">
-                <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
-            </button>
 
             <i class="fa fa-sliders mx-2" style="font-size:30px; padding:6px;"></i>
         </div>
@@ -75,18 +63,18 @@ if (!$result) {
             </thead>
             <tbody>
                 <?php
-                // Loop para exibir os dados em uma tabela
-                while ($row = mysqli_fetch_assoc($result)) {
-                    ?>
-                    <tr>
-                        <td><a href="../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>"
-                                class="text-decoration" style="color: black;">
-                                <?php echo htmlspecialchars($row['produto']); ?>
-                            </a></td>
-                        <td><?php echo htmlspecialchars($row['peso'] . ' ' . $row['unidade']); ?></td>
-                        <td><?php echo htmlspecialchars($row['quantidade']); ?></td>
-                    </tr>
-                    <?php
+                // Exibe os dados em uma tabela
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<tr>
+                                <td><a href="../visualizar/visualizar.php?cod_insumo=' . $row['cod_insumo'] . '" class="text-decoration" style="color: black;">
+                                    ' . htmlspecialchars($row['produto']) . '</a></td>
+                                <td>' . htmlspecialchars($row['peso'] . ' ' . $row['unidade']) . '</td>
+                                <td>' . htmlspecialchars($row['quantidade']) . '</td>
+                              </tr>';
+                    }
+                } else {
+                    echo "<tr><td colspan='3'>Nenhum insumo encontrado</td></tr>";
                 }
                 ?>
             </tbody>
@@ -94,21 +82,9 @@ if (!$result) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../js/pesquisa_estoque.js"></script>
 
-    <script>
-        var pesquisa = document.getElementById('pesquisar');
-
-        pesquisa.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                pesquisarDados();
-            }
-        });
-
-        function pesquisarDados() {
-            var query = pesquisa.value;
-            window.location = 'estoque.php?pesquisar=' + encodeURIComponent(query);
-        }
-    </script>
 </body>
 
 </html>
