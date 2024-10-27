@@ -26,6 +26,10 @@ $("#pesquisar").on("keyup", function () {
             '<td><a href="javascript:void(0)" class="open-modal-retirar" data-cod_insumo="' +
             insumo.cod_insumo +
             '"><i class="fa-regular fa-square-minus" style="color: red; font-size:20px;"></i></a></td>';
+            tbody +=
+            '<td><a href="javascript:void(0)" class="open-modal-editar" data-cod_insumo="' +
+            insumo.cod_insumo +
+            '"><i class="fa-regular fa-pen-to-square" style="font-size:20px;"></i></a></td>';
         
           tbody += "</tr>";
         });

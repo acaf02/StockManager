@@ -56,6 +56,7 @@
                     <th scope="col">Quantidade</th>
                     <th scope="col">Entrada</th>
                     <th scope="col">Saída</th>
+                    <th scope="col">Editar</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,6 +87,11 @@
                                 </a>
                             </td>
                             
+                            <td>
+    <a href="javascript:void(0)" class="open-modal-editar" data-cod_insumo="<?php echo $row['cod_insumo']; ?>">
+        <i class="fa-regular fa-pen-to-square" style="font-size:20px;"></i>
+    </a>
+</td>
 
                         </tr>
 
