@@ -5,9 +5,11 @@ include "../../db/db_connection.php";
 if (!empty($_GET['cod_insumo'])) {
     $cod_insumo = $_GET['cod_insumo'];
 
+    error_log("Código do insumo recebido: " . $cod_insumo); // Log para depuração
+
     $sql = "SELECT * FROM insumo WHERE cod_insumo = ?";
     $stmt = mysqli_prepare($connection, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $cod_insumo);
+    mysqli_stmt_bind_param($stmt, "s", $cod_insumo); // use "i" se for um inteiro
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
@@ -27,7 +29,6 @@ if (!empty($_GET['cod_insumo'])) {
     echo "Nenhum insumo foi selecionado.";
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -36,23 +37,20 @@ if (!empty($_GET['cod_insumo'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="visualizar.css">
+    <link rel="stylesheet" href="../../styles/visualizar.css">
     <title>Visualizar</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- Font Awesome-->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
 </head>
 
 <body>
-
     <?php
     include_once('../../componentes/header.php');
     include_once('../../componentes/navbar.php');
@@ -102,9 +100,9 @@ if (!empty($_GET['cod_insumo'])) {
                         </select>
                     </div>
                     <div class="col mb-3">
-                        <label class="form-label">Quantidade Inicial</label>
+                        <label class="form-label">Quantidade</label>
                         <input type="number" class="form-control" id="quantidade" name="quantidade"
-                            value="<?php echo $quantidade ?>" readonly>
+                            value="<?php echo $quantidade; ?>" readonly>
                     </div>
                 </div>
 
@@ -112,37 +110,27 @@ if (!empty($_GET['cod_insumo'])) {
                     <div class="col mb-3">
                         <label class="form-label">Estoque Mínimo</label>
                         <input type="number" class="form-control" id="estoque_min" name="estoque_min"
-                            value="<?php echo $estoque_min ?>" readonly>
+                            value="<?php echo $estoque_min; ?>" readonly>
                     </div>
 
                     <div class="col mb-3">
                         <label class="form-label">Estoque Médio</label>
                         <input type="number" class="form-control" id="estoque_medio" name="estoque_medio"
-                            value="<?php echo $estoque_medio ?>" readonly>
+                            value="<?php echo $estoque_medio; ?>" readonly>
                     </div>
                 </div>
-                <div style="text-align: right; ">
-                    <a href="deletar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>"
-                        class="btn btn-success m-2">Editar</a>
+                <div style="text-align: right;">
+
                     <a href="deletar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>"
                         class="btn btn-danger">Excluir</a>
                 </div>
             </form>
-
         </div>
-
     </div>
 
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="abrir-modal.js"></script>
 </body>
 
 </html>
