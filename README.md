@@ -10,3 +10,15 @@
 
 > Stock Manager é uma aplicação web desenvolvida como Projeto de Conclusão de Curso (TCC) para gerenciar o controle de estoque de suprimentos no Instituto Federal Farroupilha - Campus Alegrete. O sistema visa facilitar a gestão do inventário, permitindo que os usuários registrem, editem, visualizem suprimentos e gerem relatórios de forma eficiente.
 
+Funcionalidades em falta
+- [ ] Redefinir Senha
+- [ ] Colocar filtro dos alerts
+- [ ] Criar a pesquisa dos relatorios
+- [ ] E colocar para baixar
+- [ ] Limitar a quantidade de itens em uma pagina
+- [ ] e fazer trocar de pagina
+- [ ] e descobrir o pq não consigo abaixar a tela quando ela fica menor
+
+Adicional se der tempo
+- [ ] Refazer o design
+
