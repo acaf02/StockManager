@@ -13,6 +13,7 @@
     <?php include "../../componentes/headers.php";
 
     ?>
+
 </head>
 
 <body>
@@ -32,81 +33,71 @@
     include_once('modals/editar.php');
     ?>
 
-    <div class="container" style="padding:20px;">
-        <div class="d-flex justify-content-end align-items-center mb-3">
-            <a href="../estoque/estoque.php" class="btn btn-dark">Visualizar</a>
-            <a href="../cadastro/cadastro.php" class="btn btn-dark mx-2">
-                <i class="fa-solid fa-circle-plus"></i> Cadastrar
-            </a>
-            <div class="position-relative" style="width: 300px;">
-                <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar" id="pesquisar"
-                       value="<?php echo htmlspecialchars($pesquisar); ?>" style="padding-left: 35px;">
-                <i class="fa-sharp fa-solid fa-magnifying-glass position-absolute"
-                   style="top: 50%; left: 10px; transform: translateY(-50%);"></i>
-            </div>
-            <i class="fa fa-sliders mx-2" style="font-size:30px; padding:6px;"></i>
+<div class="container my-4">
+    <div class="d-flex justify-content-end align-items-center mb-3">
+        <a href="../estoque/estoque.php" class="btn btn-dark">Visualizar</a>
+        <a href="../cadastro/cadastro.php" class="btn btn-dark mx-2">
+            <i class="fa-solid fa-circle-plus"></i> Cadastrar
+        </a>
+        <div class="position-relative" style="width: 300px;">
+            <input type="text" name="pesquisar" class="form-control" placeholder="Pesquisar" id="pesquisar"
+                   value="<?php echo htmlspecialchars($pesquisar); ?>" style="padding-left: 35px;">
+            <i class="fa-sharp fa-solid fa-magnifying-glass position-absolute"
+               style="top: 50%; left: 10px; transform: translateY(-50%);"></i>
         </div>
-
-        <!-- Tabela de insumos -->
-        <table class="table table-hover text-center">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">Produto</th>
-                    <th scope="col">Peso/Unidade</th>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Entrada</th>
-                    <th scope="col">Saída</th>
-                    <th scope="col">Editar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        ?>
-                        <tr>
-                            <td><a href="../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>"
-                                    class="text-decoration" style="color: black;">
-                                    <?php echo htmlspecialchars($row['produto']); ?>
-                                </a></td>
-                            <td><?php echo htmlspecialchars($row['peso'] . ' ' . $row['unidade']); ?></td>
-                            <td><?php echo htmlspecialchars($row['quantidade']); ?></td>
-                            <td>
-                                <!-- Botão para abrir o modal de adicionar insumos -->
-                                <a href="javascript:void(0)" class="open-modal-adicionar"
-                                    data-cod_insumo="<?php echo $row['cod_insumo']; ?>">
-                                    <i class="fa-regular fa-square-plus" style="color: green; font-size:20px;"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <!-- Botão para abrir o modal de retirar insumos -->
-                                <a href="javascript:void(0)" class="open-modal-retirar"
-                                    data-cod_insumo="<?php echo $row['cod_insumo']; ?>">
-                                    <i class="fa-regular fa-square-minus" style="color: red; font-size:20px;"></i>
-                                </a>
-                            </td>
-                            
-                            <td>
-    <a href="javascript:void(0)" class="open-modal-editar" data-cod_insumo="<?php echo $row['cod_insumo']; ?>">
-        <i class="fa-regular fa-pen-to-square" style="font-size:20px;"></i>
-    </a>
-</td>
-
-                        </tr>
-
-
-                        <?php
-                    }
-                } else {
-                    echo "<tr><td colspan='5'>Nenhum insumo encontrado</td></tr>";
-                }
-
-
-                ?>
-            </tbody>
-        </table>
+        <i class="fa fa-sliders mx-2" style="font-size:30px; padding:6px;"></i>
     </div>
+
+    <!-- Tabela de insumos estilizada -->
+    <table class="table table-hover table-custom text-center">
+        <thead>
+            <tr>
+                <th scope="col">Produto</th>
+                <th scope="col">Peso/Unidade</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Entrada</th>
+                <th scope="col">Saída</th>
+                <th scope="col">Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                    <tr>
+                        <td><a href="../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>">
+                                <?php echo htmlspecialchars($row['produto']); ?>
+                            </a></td>
+                        <td><?php echo htmlspecialchars($row['peso'] . ' ' . $row['unidade']); ?></td>
+                        <td><?php echo htmlspecialchars($row['quantidade']); ?></td>
+                        <td>
+                            <!-- Botão para abrir o modal de adicionar insumos -->
+                            <a href="javascript:void(0)" class="open-modal-adicionar" data-cod_insumo="<?php echo $row['cod_insumo']; ?>">
+                                <i class="fa-regular fa-square-plus" style="color: green; font-size:20px;"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <!-- Botão para abrir o modal de retirar insumos -->
+                            <a href="javascript:void(0)" class="open-modal-retirar" data-cod_insumo="<?php echo $row['cod_insumo']; ?>">
+                                <i class="fa-regular fa-square-minus" style="color: red; font-size:20px;"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)" class="open-modal-editar" data-cod_insumo="<?php echo $row['cod_insumo']; ?>">
+                                <i class="fa-regular fa-pen-to-square" style="font-size:20px;"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <?php
+                }
+            } else {
+                echo "<tr><td colspan='6'>Nenhum insumo encontrado</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../../js/gerenciar.js"></script>

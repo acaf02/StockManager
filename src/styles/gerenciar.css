@@ -3,12 +3,33 @@ html body{
 }
 
 .search-input {
-    width: 200px; /* Largura fixa */
+    width: 200px;
     height: 48px;
 }
 .search-button {
-    border-radius: 25px; /* Bordas arredondadas */
+    border-radius: 25px;
     padding: 10px; 
     height: 48px;
     width: 50px;
+}
+.table-custom {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.table-custom thead {
+    background-color: #343a40;
+    color: #fff;
+}
+.table-custom th, .table-custom td {
+    vertical-align: middle;
+    padding: 15px;
+}
+.table-custom a {
+    color: #212529;
+    text-decoration: none;
+}
+.table-custom a:hover {
+    color: #007bff;
 }

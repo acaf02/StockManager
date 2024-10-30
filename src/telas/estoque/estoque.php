@@ -50,11 +50,29 @@ $result = mysqli_query($connection, $sql) or die("Erro na consulta: " . mysqli_e
                     style="top: 50%; left: 10px; transform: translateY(-50%);"></i>
             </div>
 
-            <i class="fa fa-sliders mx-2" style="font-size:30px; padding:6px;"></i>
+            <!-- Ícone que alterna a visibilidade dos checkboxes -->
+            <i class="fa fa-sliders filter-icon mx-2" onclick="toggleFilterPanel()"></i>
+
+            <!-- Painel de filtros que aparece ao lado direito -->
+            <div id="filterPanel">
+                <div class="form-check">
+                    <input type="checkbox" id="alertaMedia" class="form-check-input">
+                    <label for="alertaMedia">
+                        <i class="fas fa-exclamation-triangle" style="color: orange;"></i> Alerta quantidade Média
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="alertaBaixa" class="form-check-input" checked>
+                    <label for="alertaBaixa">
+                        <i class="fas fa-exclamation-triangle" style="color: red;"></i> Alerta quantidade Baixa
+                    </label>
+                </div>
+            </div>
+
         </div>
 
-        <table class="table table-hover text-center">
-            <thead class="table-dark">
+        <table class="table table-hover text-center table-custom">
+            <thead>
                 <tr>
                     <th scope="col">Produto</th>
                     <th scope="col">Peso/Unidade</th>
@@ -67,7 +85,7 @@ $result = mysqli_query($connection, $sql) or die("Erro na consulta: " . mysqli_e
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '<tr>
-                                <td><a href="../visualizar/visualizar.php?cod_insumo=' . $row['cod_insumo'] . '" class="text-decoration" style="color: black;">
+                                <td><a href="../visualizar/visualizar.php?cod_insumo=' . $row['cod_insumo'] . '" class="text-decoration">
                                     ' . htmlspecialchars($row['produto']) . '</a></td>
                                 <td>' . htmlspecialchars($row['peso'] . ' ' . $row['unidade']) . '</td>
                                 <td>' . htmlspecialchars($row['quantidade']) . '</td>
@@ -84,6 +102,12 @@ $result = mysqli_query($connection, $sql) or die("Erro na consulta: " . mysqli_e
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../../js/pesquisa_estoque.js"></script>
+    <script>
+    function toggleFilterPanel() {
+        const filterPanel = document.getElementById("filterPanel");
+        filterPanel.style.display = filterPanel.style.display === "none" ? "block" : "none";
+    }
+    </script>
 
 </body>
 
