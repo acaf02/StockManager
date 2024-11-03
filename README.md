@@ -15,10 +15,12 @@ Funcionalidades em falta
 - [ ] Colocar filtro dos alerts
 - [ ] Criar a pesquisa dos relatorios
 - [ ] E colocar para baixar
-- [ ] Limitar a quantidade de itens em uma pagina
-- [ ] e fazer trocar de pagina
+- [ x ] Limitar a quantidade de itens em uma pagina
+- [ x ] e fazer trocar de pagina
 - [ ] e descobrir o pq não consigo abaixar a tela quando ela fica menor
 
-Adicional se der tempo
-- [ ] Refazer o design
-
+refazer
+- [ x ] refazer o design das tabelas
+- [ ] mudar tabela de cores ?
+- [ ] ajeitar card relatorios (bordas)
+- [ ] centralizar melhor os card do inicio
