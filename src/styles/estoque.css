@@ -7,17 +7,16 @@ html body{
     flex-direction: column; 
 }
 .search-input {
-    width: 200px; /* Largura fixa */
+    width: 200px;
     height: 48px;
 }
 .search-button {
-    border-radius: 25px; /* Bordas arredondadas */
+    border-radius: 25px;
     padding: 10px; 
     height: 60px;
     width: 50px;
 }
 
-  /* Estilos adicionais para a tabela */
   .table-custom {
     background-color: #f8f9fa;
     border-radius: 8px;
@@ -40,7 +39,7 @@ html body{
 
 .table-custom td a {
     color: #212529;
-    text-decoration: none;
+  
 }
 
 .table-custom td a:hover {
@@ -48,7 +47,7 @@ html body{
 }
 
 #filterPanel {
-    display: none; /* Oculto inicialmente */
+    display: none; 
     position: absolute;
     right: 0;
     top: 60px;
@@ -60,7 +59,6 @@ html body{
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
-/* Estilos dos checkboxes */
 .form-check {
     margin: 10px 0;
     display: flex;
@@ -72,7 +70,6 @@ html body{
     font-size: 14px;
 }
 
-/* Ícone */
 .filter-icon {
     font-size: 24px;
     cursor: pointer;
