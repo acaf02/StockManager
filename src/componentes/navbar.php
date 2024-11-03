@@ -2,16 +2,16 @@
     body {
         font-family: Arial, sans-serif;
         background-color: #f0f0f0;
-        overflow: hidden; 
+        overflow: hidden;
     }
 
     .navbar {
         position: fixed;
-        left: -220px; 
+        left: -220px;
         top: 0;
         height: 100%;
         width: 150px;
-        background-color: #ACB2AD;
+        background-color: #006233; 
         transition: left 0.3s;
         padding-top: 60px;
         z-index: 1000;
@@ -21,42 +21,32 @@
         align-items: flex-start;
     }
 
-    /* Certifique-se de que cada item da navbar ocupe todo o espaço */
     .nav-item {
-        width: 100%; /* Ocupa a largura total da navbar */
+        width: 100%;
         padding: 10px 15px;
-        color: black;
+        color: #fff;
         text-align: left;
         cursor: pointer;
         display: flex;
         align-items: center;
         margin-bottom: 5px;
-        transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
+        transition: background-color 0.3s ease;
     }
 
-    /* O hover deve afetar o item inteiro */
     .nav-item:hover {
-        background-color: #333333; /* Cor de fundo ao passar o mouse sobre o item */
+        background-color: #005622;
     }
 
-    /* O texto e o ícone do link */
     .nav-item a {
         text-decoration: none;
-        color: black; /* Cor do texto do link */
-        transition: color 0.3s ease, transform 0.3s ease; /* Transições de cor e tamanho */
+        color: #fff;
         display: flex;
         align-items: center;
-        width: 100%; /* O link ocupa a largura total do item */
-    }
-
-    /* O efeito hover dentro do link, ao passar o mouse */
-    .nav-item a:hover {
-        color: #FFFFFF; /* Cor do texto ao passar o mouse */
-        transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+        width: 100%;
     }
 
     .nav-item i {
-        margin-right: 8px; 
+        margin-right: 8px;
     }
 
     .menu-icon {
@@ -65,23 +55,27 @@
         left: 20px;
         font-size: 24px;
         color: black;
-        cursor: pointer;
-        z-index: 1001; /* Acima da navbar */
-    }
 
-    .menu-icon a {
-        color: black;
-        text-decoration: none;
-        transition: color 0.3s ease, transform 0.3s ease;
+        cursor: pointer;
+        z-index: 1001;
+        transition: color 0.3s ease;
     }
 
     .menu-icon:hover {
-        color: #FFFFFF; /* Cor ao passar o mouse sobre o ícone */
-        transform: scale(1.1); /* Aumenta o tamanho do ícone ao passar o mouse */
+        color: white;
+    }
+
+    .menu-icon.active {
+        color: #ffffff; 
+    }
+
+    .menu-icon a {
+        text-decoration: none;
+        color: inherit;
     }
 </style>
 
-<div class="menu-icon" onclick="alterarNavbar()">
+<div class="menu-icon" id="menuIcon" onclick="toggleNavbar()">
     <i class="fas fa-bars"></i>
 </div>
 
@@ -104,8 +98,32 @@
 </div>
 
 <script>
-    function alterarNavbar() {
+    // Alternar visibilidade da navbar
+    function toggleNavbar() {
         const navbar = document.getElementById('navbar');
-        navbar.style.left = navbar.style.left === '0px' ? '-220px' : '0px';
+        const menuIcon = document.getElementById('menuIcon');
+
+        // Abrir ou fechar a navbar
+        if (navbar.style.left === '0px') {
+            navbar.style.left = '-220px';
+            menuIcon.classList.remove('active');
+        } else {
+            navbar.style.left = '0px';
+            menuIcon.classList.add('active');
+        }
     }
+
+    // Fechar a navbar ao clicar fora dela
+    document.addEventListener('click', function(event) {
+        const navbar = document.getElementById('navbar');
+        const menuIcon = document.getElementById('menuIcon');
+        const isClickInsideNavbar = navbar.contains(event.target);
+        const isClickOnIcon = menuIcon.contains(event.target);
+
+        // Fechar navbar se o clique não for dentro dela ou no ícone
+        if (!isClickInsideNavbar && !isClickOnIcon && navbar.style.left === '0px') {
+            navbar.style.left = '-220px';
+            menuIcon.classList.remove('active');
+        }
+    });
 </script>
