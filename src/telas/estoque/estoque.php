@@ -3,8 +3,22 @@ include $_SERVER['DOCUMENT_ROOT'] . "/SM/src/db/db_connection.php";
 
 // Define consulta SQL com base na pesquisa
 $pesquisa = !empty($_GET['pesquisar']) ? mysqli_real_escape_string($connection, $_GET['pesquisar']) : '';
-$sql = "SELECT * FROM insumo " . ($pesquisa ? "WHERE produto LIKE '%$pesquisa%'" : "") . " ORDER BY cod_insumo ASC";
+
+$limit = 10;
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+$page = $page < 1 ? 1 : $page; // Garante que a página não seja menor que 1
+$offset = ($page - 1) * $limit;
+
+// Consulta para obter os dados com limite e deslocamento
+$sql = "SELECT * FROM insumo " . ($pesquisa ? "WHERE produto LIKE '%$pesquisa%'" : "") . " ORDER BY cod_insumo ASC LIMIT $limit OFFSET $offset";
 $result = mysqli_query($connection, $sql) or die("Erro na consulta: " . mysqli_error($connection));
+
+// Get total number of items for pagination
+$total_sql = "SELECT COUNT(*) as total FROM insumo " . ($pesquisa ? "WHERE produto LIKE '%$pesquisa%'" : "");
+$total_result = mysqli_query($connection, $total_sql);
+$total_row = mysqli_fetch_assoc($total_result);
+$total_items = $total_row['total'];
+$total_pages = ceil($total_items / $limit);
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +40,7 @@ $result = mysqli_query($connection, $sql) or die("Erro na consulta: " . mysqli_e
     include_once('../../componentes/navbar.php');
     ?>
 
-    <div class="container" style="padding:20px;">
+    <div class="container my-4">
         <?php
         // Exibe mensagem de alerta, se houver
         if (isset($_GET['msg'])) {
@@ -54,7 +68,7 @@ $result = mysqli_query($connection, $sql) or die("Erro na consulta: " . mysqli_e
             <i class="fa fa-sliders filter-icon mx-2" onclick="toggleFilterPanel()"></i>
 
             <!-- Painel de filtros que aparece ao lado direito -->
-            <div id="filterPanel">
+            <div id="filterPanel" style="display: none;">
                 <div class="form-check">
                     <input type="checkbox" id="alertaMedia" class="form-check-input">
                     <label for="alertaMedia">
@@ -68,7 +82,6 @@ $result = mysqli_query($connection, $sql) or die("Erro na consulta: " . mysqli_e
                     </label>
                 </div>
             </div>
-
         </div>
 
         <table class="table table-hover text-center table-custom">
@@ -84,12 +97,16 @@ $result = mysqli_query($connection, $sql) or die("Erro na consulta: " . mysqli_e
                 // Exibe os dados em uma tabela
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo '<tr>
-                                <td><a href="../visualizar/visualizar.php?cod_insumo=' . $row['cod_insumo'] . '" class="text-decoration">
-                                    ' . htmlspecialchars($row['produto']) . '</a></td>
-                                <td>' . htmlspecialchars($row['peso'] . ' ' . $row['unidade']) . '</td>
-                                <td>' . htmlspecialchars($row['quantidade']) . '</td>
-                              </tr>';
+                        ?>
+                        <tr>
+                            <td><a href="../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>">
+                                    <?php echo htmlspecialchars($row['produto']); ?>
+                                </a></td>
+                            <td><?php echo htmlspecialchars($row['peso'] . ' ' . $row['unidade']); ?></td>
+                            <td><?php echo htmlspecialchars($row['quantidade']); ?></td>
+
+                        </tr>
+                        <?php
                     }
                 } else {
                     echo "<tr><td colspan='3'>Nenhum insumo encontrado</td></tr>";
@@ -97,16 +114,29 @@ $result = mysqli_query($connection, $sql) or die("Erro na consulta: " . mysqli_e
                 ?>
             </tbody>
         </table>
+
+        <!-- Paginação -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-end">
+                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                    <li class="page-item <?= $i === $page ? 'active' : ''; ?>">
+                        <a class="page-link" href="?pesquisar=<?php echo urlencode($pesquisa); ?>&page=<?php echo $i; ?>">
+                            <?php echo $i; ?>
+                        </a>
+                    </li>
+                <?php endfor; ?>
+            </ul>
+        </nav>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../../js/pesquisa_estoque.js"></script>
     <script>
-    function toggleFilterPanel() {
-        const filterPanel = document.getElementById("filterPanel");
-        filterPanel.style.display = filterPanel.style.display === "none" ? "block" : "none";
-    }
+        function toggleFilterPanel() {
+            const filterPanel = document.getElementById("filterPanel");
+            filterPanel.style.display = filterPanel.style.display === "none" ? "block" : "none";
+        }
     </script>
 
 </body>
