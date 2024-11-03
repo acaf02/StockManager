@@ -6,7 +6,7 @@ $pesquisa = !empty($_GET['pesquisar']) ? mysqli_real_escape_string($connection, 
 
 $limit = 10;
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-$page = $page < 1 ? 1 : $page; // Garante que a página não seja menor que 1
+$page = $page < 1 ? 1 : $page;
 $offset = ($page - 1) * $limit;
 
 // Consulta para obter os dados com limite e deslocamento
@@ -65,7 +65,8 @@ $total_pages = ceil($total_items / $limit);
             </div>
 
             <!-- Ícone que alterna a visibilidade dos checkboxes -->
-            <i class="fa fa-sliders filter-icon mx-2" onclick="toggleFilterPanel()"></i>
+            <i class="fa fa-sliders filter-icon mx-2" style="font-size:30px; padding:6px;"
+                onclick="toggleFilterPanel()"></i>
 
             <!-- Painel de filtros que aparece ao lado direito -->
             <div id="filterPanel" style="display: none;">
