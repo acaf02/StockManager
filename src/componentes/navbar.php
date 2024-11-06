@@ -11,7 +11,7 @@
         top: 0;
         height: 100%;
         width: 150px;
-        background-color: #006233; 
+        background-color: #006233;
         transition: left 0.3s;
         padding-top: 60px;
         z-index: 1000;
@@ -66,7 +66,7 @@
     }
 
     .menu-icon.active {
-        color: #ffffff; 
+        color: #ffffff;
     }
 
     .menu-icon a {
@@ -114,13 +114,12 @@
     }
 
     // Fechar a navbar ao clicar fora dela
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         const navbar = document.getElementById('navbar');
         const menuIcon = document.getElementById('menuIcon');
         const isClickInsideNavbar = navbar.contains(event.target);
         const isClickOnIcon = menuIcon.contains(event.target);
 
-        // Fechar navbar se o clique não for dentro dela ou no ícone
         if (!isClickInsideNavbar && !isClickOnIcon && navbar.style.left === '0px') {
             navbar.style.left = '-220px';
             menuIcon.classList.remove('active');
