@@ -1,5 +1,5 @@
 html body{
-    background: #C1CBC6;
+    background: #eeeeee;
 }
 
 .card-inventario, .card-estatisticas {
@@ -23,7 +23,7 @@ html body{
 }
 
 .card-img-top {
-    padding-top: 4px;
+    padding-top: 6px;
     padding-left: 1px;
     padding-right: 1px;
     padding-bottom: 10px;

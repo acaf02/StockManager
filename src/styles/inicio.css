@@ -1,7 +1,7 @@
 html body{
-    background: #C1CBC6;
+    background: #eeeeee;
+     
 }
-
 
 .card-img-top {
     padding-top: 15px;
@@ -14,3 +14,4 @@ html body{
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
 }
+
