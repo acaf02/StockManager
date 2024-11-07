@@ -21,6 +21,6 @@ Funcionalidades em falta
 
 refazer
 - [x]  refazer o design das tabelas
-- [ ] mudar tabela de cores ?
-- [ ] ajeitar card relatorios (bordas)
+- [x] mudar tabela de cores 
+- [x] ajeitar csard relatorios (bordas)
 - [x] centralizar melhor os card do inicio
