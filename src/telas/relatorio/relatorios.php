@@ -1,19 +1,10 @@
-<?php
-
-session_start();
-if (!isset($_SESSION['loggedIn'])) {
-    header('Location: index.php');
-    exit();
-}
-
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="relatorio.css">
+    <link rel="stylesheet" href="../../styles/relatorio.css">
     <title>Relatórios</title>
 
     <!-- Bootstrap -->
@@ -27,42 +18,39 @@ if (!isset($_SESSION['loggedIn'])) {
 
     <style>
         .card-custom {
-            width: 300px;
-            margin: 0 20px 20px 20px;
-        }
+    width: 300px;
+    margin: 10px;
+}
     </style>
-
 </head>
 
 <body>
-
-    <?php
+<?php
     include_once('../../componentes/header.php');
     include_once('../../componentes/navbar.php');
     ?>
-
     <h1 class="title">Relatórios</h1>
 
-    <!-- Cards de relatorios disponiveis-->
+    <!-- Cards de relatórios disponíveis-->
     <div class="container">
-        <div class="row justify-content-center cards-row" style="padding-top:25px;">
-            <div class="card card-custom card-inventario">
+        <div class="row justify-content-center cards-row" >
+            <div class="card card-custom" style="padding-left: 4px;padding-right: 4px;">
                 <div class="card-body">
                     <img class="card-img-top" src="../../assets/imagens/relatorio.png" alt="Relatórios">
                     <h5 class="card-title">Inventário de Estoque</h5>
                     <p class="card-text">Este relatório mostra todos os produtos disponíveis no estoque.</p>
-                    <a href="usuario/usuarios.php" class="btn btn-primary">Abrir</a>
-                    <a href="usuario/usuarios.php" class="btn btn-primary">Baixar</a>
+                    <a href="usuario/usuarios.php" class="btn btn-primary btn-sm me-2">Abrir</a>
+                    <a href="usuario/usuarios.php" class="btn btn-primary btn-sm">Baixar</a>
                 </div>
             </div>
 
-            <div class="card card-custom card-estatisticas">
+            <div class="card card-custom" style="padding-left: 3px;padding-right: 3px;">
                 <div class="card-body">
                     <img class="card-img-top" src="../../assets/imagens/relatorio.png" alt="Relatórios">
                     <h5 class="card-title">Estatísticas</h5>
                     <p class="card-text">Este relatório mostra quais são os itens mais e menos consumidos.</p>
-                    <a href="livros/livros.php" class="btn btn-primary">Abrir</a>
-                    <a href="usuario/usuarios.php" class="btn btn-primary">Baixar</a>
+                    <a href="livros/livros.php" class="btn btn-primary btn-sm me-2">Abrir</a>
+                    <a href="usuario/usuarios.php" class="btn btn-primary btn-sm">Baixar</a>
                 </div>
             </div>
         </div>
