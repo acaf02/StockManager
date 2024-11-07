@@ -20,7 +20,7 @@ html{
 
 .login-box .user-box input {
     width: 100%;
-    padding: 10px; /* Adicionando padding superior e inferior */
+    padding: 10px; 
     font-size: 16px;
     color: #000000;
     margin-bottom: 30px;
@@ -44,14 +44,14 @@ html{
 
 .login-box .user-box input:focus ~ label,
 .login-box .user-box input:valid ~ label {
-    top: -30px;
+    top: -35px;
     left: 0;
     color: #000000;
     font-size: 16px;
 }
 
 input[type="button"] {
-    background: #5D7262; /* Um verde suave */
+    background: #006233; /* Um verde suave */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -73,7 +73,6 @@ input[type="button"]:hover {
     position: absolute;
     top: 28%;
     right: 15px;
-
     transform: translateY(-50%);
     cursor: pointer;
 }
