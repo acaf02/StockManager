@@ -6,15 +6,39 @@ html body{
     display: flex;
     flex-direction: column; 
 }
+
 .search-input {
     width: 200px;
     height: 48px;
 }
+
 .search-button {
     border-radius: 25px;
     padding: 10px; 
     height: 60px;
     width: 50px;
+}
+
+.btn.gerenciar {
+    background-color: #006233;
+    color: #FFFFFF; 
+    border: none;
+}
+
+.btn.gerenciar:hover {
+    background-color: #004d28; 
+    color: #FFFFFF;
+}
+
+.btn.cadastrar {
+    background-color: #006233; 
+    color: #FFFFFF;
+    border: none;
+}
+
+.btn.cadastrar:hover {
+    background-color: #004d28;
+    color: #FFFFFF;
 }
 
 .table-custom {

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../styles/gerenciar.css">
     <title>Dashboard</title>
     <?php include "../../componentes/headers.php"; ?>
+
 </head>
 
 <body>
@@ -29,8 +30,8 @@
 
     <div class="container my-4">
         <div class="d-flex justify-content-end align-items-center mb-3">
-            <a href="../estoque/estoque.php" class="btn btn-dark">Visualizar</a>
-            <a href="../cadastro/cadastro.php" class="btn btn-dark mx-2">
+            <a href="../estoque/estoque.php" class="btn visualizar">Visualizar</a>
+            <a href="../cadastro/cadastro.php" class="btn cadastrar mx-2">
                 <i class="fa-solid fa-circle-plus"></i> Cadastrar
             </a>
             <div class="position-relative" style="width: 300px;">
@@ -39,11 +40,10 @@
                 <i class="fa-sharp fa-solid fa-magnifying-glass position-absolute"
                     style="top: 50%; left: 10px; transform: translateY(-50%);"></i>
             </div>
-            <i class="fa fa-sliders filter-icon mx-2" style="font-size:30px; padding:6px;"
-                onclick="abrirFilterPanel()" id="filterIcon"></i>
+            <i class="fa fa-sliders filter-icon mx-2" style="font-size:30px; padding:6px;" onclick="abrirFilterPanel()"
+                id="filterIcon"></i>
         </div>
 
-        <!-- Tabela de insumos estilizada -->
         <table class="table table-hover table-custom text-center">
             <thead>
                 <tr>
@@ -95,33 +95,37 @@
         </table>
 
         <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-end">
-    
-    <!-- Botão de Anterior -->
-    <li class="page-item <?= $page == 1 ? 'disabled' : ''; ?>">
-      <a class="page-link" href="?pesquisar=<?php echo urlencode($pesquisar); ?>&page=<?php echo $page - 1; ?>" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    
-    <!-- Números das páginas -->
-    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-      <li class="page-item <?= $i === $page ? 'active' : ''; ?>">
-        <a class="page-link" href="?pesquisar=<?php echo urlencode($pesquisar); ?>&page=<?php echo $i; ?>">
-          <?php echo $i; ?>
-        </a>
-      </li>
-    <?php endfor; ?>
+            <ul class="pagination justify-content-end">
 
-    <!-- Botão de Próximo -->
-    <li class="page-item <?= $page == $total_pages ? 'disabled' : ''; ?>">
-      <a class="page-link" href="?pesquisar=<?php echo urlencode($pesquisar); ?>&page=<?php echo $page + 1; ?>" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-    
-  </ul>
-</nav>
+                <!-- Botão de Anterior -->
+                <li class="page-item <?= $page == 1 ? 'disabled' : ''; ?>">
+                    <a class="page-link"
+                        href="?pesquisar=<?php echo urlencode($pesquisar); ?>&page=<?php echo $page - 1; ?>"
+                        aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                <!-- Números das páginas -->
+                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                    <li class="page-item <?= $i === $page ? 'active' : ''; ?>">
+                        <a class="page-link" href="?pesquisar=<?php echo urlencode($pesquisar); ?>&page=<?php echo $i; ?>">
+                            <?php echo $i; ?>
+                        </a>
+                    </li>
+                <?php endfor; ?>
+
+                <!-- Botão de Próximo -->
+                <li class="page-item <?= $page == $total_pages ? 'disabled' : ''; ?>">
+                    <a class="page-link"
+                        href="?pesquisar=<?php echo urlencode($pesquisar); ?>&page=<?php echo $page + 1; ?>"
+                        aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
 
     </div>
 

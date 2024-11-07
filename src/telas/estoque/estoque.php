@@ -31,8 +31,8 @@
         ?>
 
         <div class="d-flex justify-content-end align-items-center mb-3">
-            <a href="../gerenciar/gerenciar.php" class="btn btn-dark">Gerenciar</a>
-            <a href="../cadastro/cadastro.php" class="btn btn-dark mx-2">
+            <a href="../gerenciar/gerenciar.php" class="btn gerenciar">Gerenciar</a>
+            <a href="../cadastro/cadastro.php" class="btn cadastrar mx-2">
                 <i class="fa-solid fa-circle-plus"></i> Cadastrar
             </a>
 
