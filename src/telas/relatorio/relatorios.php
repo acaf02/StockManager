@@ -39,8 +39,7 @@
                     <img class="card-img-top" src="../../assets/imagens/relatorio.png" alt="Relatórios">
                     <h5 class="card-title">Inventário de Estoque</h5>
                     <p class="card-text">Este relatório mostra todos os produtos disponíveis no estoque.</p>
-                    <a href="usuario/usuarios.php" class="btn btn-primary btn-sm me-2">Abrir</a>
-                    <a href="usuario/usuarios.php" class="btn btn-primary btn-sm">Baixar</a>
+                    <a href="pdf/relatorio_disponivel.php" class="btn btn-primary btn-sm me-2">Abrir</a>
                 </div>
             </div>
 
