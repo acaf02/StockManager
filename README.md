@@ -13,8 +13,8 @@
 Funcionalidades em falta
 - [ ] Redefinir Senha
 - [ ] Colocar filtro dos alerts
-- [ ] Criar a pesquisa dos relatorios
-- [ ] E colocar para baixar
+- [x] Criar a pesquisa dos relatorios
+- [x] E colocar para baixar
 - [x] Limitar a quantidade de itens em uma pagina
 - [x] e fazer trocar de pagina
 - [x] e descobrir o pq não consigo abaixar a tela quando ela fica menor
@@ -22,5 +22,5 @@ Funcionalidades em falta
 refazer
 - [x]  refazer o design das tabelas
 - [x] mudar tabela de cores 
-- [x] ajeitar csard relatorios (bordas)
+- [x] ajeitar cards relatorios (bordas)
 - [x] centralizar melhor os card do inicio
