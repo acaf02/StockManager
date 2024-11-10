@@ -39,7 +39,7 @@
                     <img class="card-img-top" src="../../assets/imagens/relatorio.png" alt="Relatórios">
                     <h5 class="card-title">Inventário de Estoque</h5>
                     <p class="card-text">Este relatório mostra todos os produtos disponíveis no estoque.</p>
-                    <a href="pdf/relatorio_disponivel.php" class="btn btn-primary btn-sm me-2">Abrir</a>
+                    <a href="pdf/inventario.php" class="btn btn-primary btn-sm me-2">Baixar</a>
                 </div>
             </div>
 
@@ -48,8 +48,7 @@
                     <img class="card-img-top" src="../../assets/imagens/relatorio.png" alt="Relatórios">
                     <h5 class="card-title">Estatísticas</h5>
                     <p class="card-text">Este relatório mostra quais são os itens mais e menos consumidos.</p>
-                    <a href="livros/livros.php" class="btn btn-primary btn-sm me-2">Abrir</a>
-                    <a href="usuario/usuarios.php" class="btn btn-primary btn-sm">Baixar</a>
+                    <a href="pdf/estatisticas.php" class="btn btn-primary btn-sm me-2">Baixar</a>
                 </div>
             </div>
         </div>
