@@ -1,10 +1,10 @@
 <?php
+
 include $_SERVER['DOCUMENT_ROOT'] . "/SM/src/db/db_connection.php";
 
 $result = "SELECT * FROM insumo";
 $resultado_tabela = mysqli_query($connection, $result);
 
-// Include autoloader
 require_once 'dompdf/autoload.inc.php';
 
 use Dompdf\Dompdf;
@@ -17,20 +17,19 @@ $type = pathinfo($logoPath, PATHINFO_EXTENSION);
 $data = file_get_contents($logoPath);
 $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-// Construção do HTML com logo ao lado do título e redimensionado
 $html = ''; 
 
 $html .= '
-    <div style="text-align: center; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-        <img src="' . $base64 . '" alt="Logo" style="width: 150px; height: 55px; margin-right: 10px; padding-botton: 20px;">
-        <h2 style="color: #2e3d49; font-family: Roboto, sans-serif; font-size: 24px; font-weight: bold; margin: 0;">Relatório de Itens Disponíveis</h2>
+    <div style="text-align: center; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;"> 
+        <img src="' . $base64 . '" alt="Logo" style="width: 150px; height: 55px; margin-right: 10px; padding-bottom: 20px;"> 
+        <h2 style="color: #2e3d49; font-family: Roboto, sans-serif; font-size: 24px; font-weight: bold; margin: 0;">Inventário de Estoque</h2>
     </div>
     <table style="width: 100%; border-collapse: collapse; font-family: Roboto, sans-serif; border: none; background-color: #f8f9fa; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
-        <thead style="background-color: #006233; color: white; text-align: left; border-radius: 8px 8px 0 0;">
+        <thead style="background-color: #006233; color: white; text-align: left;">
             <tr>
-                <th style="padding: 12px; font-weight: bold; color: white; border-top-left-radius: 8px;">Produto</th>
+                <th style="padding: 12px; font-weight: bold; color: white;">Produto</th>
                 <th style="padding: 12px; font-weight: bold; color: white;">Peso/Unidade</th>
-                <th style="padding: 12px; font-weight: bold; color: white; border-top-right-radius: 8px;">Quantidade</th>
+                <th style="padding: 12px; font-weight: bold; color: white;">Quantidade</th>
             </tr>
         </thead>
         <tbody>
@@ -62,7 +61,7 @@ $dompdf->render();
 $dompdf->stream(
     "relatorio_estoque.pdf",
     array(
-        "Attachment" => false
+        "Attachment" => true
     )
 );
 ?>
