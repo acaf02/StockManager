@@ -17,26 +17,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($operation == 'adicionar') {
                 $query = "UPDATE insumo SET quantidade = quantidade + ? WHERE cod_insumo = ?";
             } else if ($operation == 'retirar') {
-                $query = "UPDATE insumo SET quantidade = quantidade - ? WHERE cod_insumo = ?";
+                $query = "UPDATE insumo SET quantidade = quantidade - ?, total_consumido = total_consumido + ? WHERE cod_insumo = ?";
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Erro ao processar a solicitação.']);
+                exit();
             }
+            
             $stmt = $connection->prepare($query);
-
+            
             if ($stmt) {
-                $stmt->bind_param('ii', $quantidade, $cod_insumo);
-
+                if ($operation == 'retirar') {
+                    // Passa a quantidade duas vezes para atualizar `quantidade` e `total_consumido`
+                    $stmt->bind_param('iii', $quantidade, $quantidade, $cod_insumo);
+                } else {
+                    $stmt->bind_param('ii', $quantidade, $cod_insumo);
+                }
+            
                 if ($stmt->execute()) {
-                    // Retorna uma mensagem genérica de atualização
                     echo json_encode(['status' => 'success', 'message' => 'Quantidade atualizada com sucesso!']);
                 } else {
-                    echo json_encode(['status' => 'error', 'message' => 'Erro ao retirar a quantidade.']);
+                    echo json_encode(['status' => 'error', 'message' => 'Erro ao atualizar a quantidade.']);
                 }
-
+            
                 $stmt->close();
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Erro na preparação da consulta.']);
             }
+            
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Quantidade inválida.']);
         }
