@@ -53,10 +53,9 @@ if (!empty($_GET['cod_insumo'])) {
 <body>
     <?php
     include_once('../../componentes/header.php');
-    include_once('../../componentes/navbar.php');
     ?>
 
-    <div class="container" style="padding: 30px;">
+    <div class="container" style="padding-top: 110px;">
         <div class="text-center mb-4">
             <h3 style="text-align: center;">Visualização de Insumo</h3>
             <p class="text-muted">Visualização dos detalhes do produto abaixo.</p>

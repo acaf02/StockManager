@@ -20,7 +20,6 @@
 
 
     include_once('../../componentes/header.php');
-    include_once('../../componentes/navbar.php');
     include_once('../../componentes/paginacao_pesquisa.php');
     include_once('../../componentes/filtro.php');
     include_once('modals/adicionar.php');
@@ -28,7 +27,7 @@
     include_once('modals/editar.php');
     ?>
 
-    <div class="container my-4">
+    <div class="container my-4" style="padding-top:65px;">
         <div class="d-flex justify-content-end align-items-center mb-3">
             <a href="../estoque/estoque.php" class="btn visualizar">Visualizar</a>
             <a href="../cadastro/cadastro.php" class="btn cadastrar mx-2">

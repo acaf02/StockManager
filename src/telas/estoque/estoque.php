@@ -14,12 +14,11 @@
 
     <?php
     include_once('../../componentes/header.php');
-    include_once('../../componentes/navbar.php');
     include_once('../../componentes/paginacao_pesquisa.php');
     include_once('../../componentes/filtro.php');
     ?>
 
-    <div class="container my-4">
+    <div class="container my-4" style="padding-top:65px;">
         <?php
         // Exibe mensagem de alerta, se houver
         if (isset($_GET['msg'])) {
@@ -58,30 +57,30 @@
                 </tr>
             </thead>
             <tbody>
-    <?php
-    // Exibe os dados em uma tabela
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            // Carrega a quantidade mínima do banco de dados
-            $cod_insumo = $row['cod_insumo'];
-            $query_min_quantity = "SELECT estoque_min FROM insumo WHERE cod_insumo = '$cod_insumo'";
-            $result_min = mysqli_query($connection, $query_min_quantity);
-            $min_quantity = $result_min ? mysqli_fetch_assoc($result_min)['estoque_min'] : 0;
-            ?>
-            <tr data-min-quantity="<?php echo htmlspecialchars($min_quantity); ?>">
-                <td><a href="../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>">
-                        <?php echo htmlspecialchars($row['produto']); ?>
-                    </a></td>
-                <td><?php echo htmlspecialchars($row['peso'] . ' ' . $row['unidade']); ?></td>
-                <td><?php echo htmlspecialchars($row['quantidade']); ?></td>
-            </tr>
-            <?php
-        }
-    } else {
-        echo "<tr><td colspan='3'>Nenhum insumo encontrado</td></tr>";
-    }
-    ?>
-</tbody>
+                <?php
+                // Exibe os dados em uma tabela
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        // Carrega a quantidade mínima do banco de dados
+                        $cod_insumo = $row['cod_insumo'];
+                        $query_min_quantity = "SELECT estoque_min FROM insumo WHERE cod_insumo = '$cod_insumo'";
+                        $result_min = mysqli_query($connection, $query_min_quantity);
+                        $min_quantity = $result_min ? mysqli_fetch_assoc($result_min)['estoque_min'] : 0;
+                        ?>
+                        <tr data-min-quantity="<?php echo htmlspecialchars($min_quantity); ?>">
+                            <td><a href="../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>">
+                                    <?php echo htmlspecialchars($row['produto']); ?>
+                                </a></td>
+                            <td><?php echo htmlspecialchars($row['peso'] . ' ' . $row['unidade']); ?></td>
+                            <td><?php echo htmlspecialchars($row['quantidade']); ?></td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    echo "<tr><td colspan='3'>Nenhum insumo encontrado</td></tr>";
+                }
+                ?>
+            </tbody>
 
         </table>
         <nav aria-label="Page navigation example">

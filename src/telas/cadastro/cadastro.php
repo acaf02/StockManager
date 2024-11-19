@@ -71,10 +71,9 @@ mysqli_close($connection);
 
     <?php
     include_once('../../componentes/header.php');
-    include_once('../../componentes/navbar.php');
     ?>
 
-    <div class="container" style="padding: 50px;">
+    <div class="container" style="padding-top: 120px;">
         <div class="text-center mb-4">
             <h3>Cadastre um novo Insumo</h3>
             <p class="text-muted">Complete o formulário abaixo para cadastrar um novo insumo.</p>

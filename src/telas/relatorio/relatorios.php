@@ -18,22 +18,23 @@
 
     <style>
         .card-custom {
-    width: 300px;
-    margin: 10px;
-}
+            width: 300px;
+            margin: 10px;
+        }
     </style>
 </head>
 
 <body>
-<?php
+    <?php
     include_once('../../componentes/header.php');
-    include_once('../../componentes/navbar.php');
+
     ?>
-    <h1 class="title">Relatórios</h1>
+
 
     <!-- Cards de relatórios disponíveis-->
-    <div class="container">
-        <div class="row justify-content-center cards-row" >
+    <div class="container" style="padding-top:80px;">
+        <h1 class="title" style="padding-bottom: 20px;">Relatórios</h1>
+        <div class="row justify-content-center cards-row">
             <div class="card card-custom" style="padding-left: 4px;padding-right: 4px;">
                 <div class="card-body">
                     <img class="card-img-top" src="../../assets/imagens/relatorio.png" alt="Relatórios">
