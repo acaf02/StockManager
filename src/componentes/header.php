@@ -49,26 +49,20 @@
         padding: 20px;
     }
 
-    /* Estilo dos itens de navegação no offcanvas */
+
     .nav-item {
         width: 100%;
         padding: 20px 30px;
-        /* Aumentei o padding para dar mais espaço */
         color: #fff;
         text-align: center;
-        /* Centraliza o texto dentro dos itens */
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        /* Centraliza os itens de forma flexível */
         margin-bottom: 15px;
-        /* Aumentei o espaçamento entre os itens */
         transition: background-color 0.3s ease;
-        font-size: 18px;
-        /* Aumentei o tamanho da fonte */
+        font-size: 22px;
         height: 60px;
-        /* Aumentei a altura do item */
     }
 
     .nav-item:hover {
