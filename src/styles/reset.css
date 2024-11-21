@@ -1,0 +1,85 @@
+html{
+    background: #eeeeee;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.login-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: #ACB2AD;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+.user-box{
+    position: relative;
+}
+p {
+    padding-bottom: 15px;
+    text-align: justify; /* Adicionando justificação ao texto */
+    text-justify: inter-word; /* Ajusta o espaçamento entre as palavras */
+}
+
+.user-box input {
+    width: 100%;
+    padding: 10px; 
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 30px;
+    border: none;
+    outline: none;
+    background: #D9D9D9;
+    border-radius: 10px;
+}
+
+.user-box label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 10px;
+    padding-left: 10px;
+    font-size: 16px;
+    color: #000000;
+    pointer-events: none;
+    transition: 0.6;
+}
+.user-box input:focus ~ label,
+.user-box input:valid ~ label {
+    top: -35px;
+    left: 0;
+    color: #000000;
+    font-size: 16px;
+}
+
+input[type="button"] {
+    background: #006233; /* Um verde suave */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+input[type="button"]:hover {
+    background: #7A9380; /* Um verde levemente mais claro para o hover */
+}
+
+.user-box {
+    position: relative;
+}
+
