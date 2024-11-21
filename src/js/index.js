@@ -9,7 +9,7 @@ $(document).ready(function () {
     } else {
       $.ajax({
         url: "index.php",
-        method: "POST",
+        type: "POST",
         data: {
           login: 1,
           username: username,
@@ -38,7 +38,8 @@ $(document).ready(function () {
 
   // Evento para capturar a tecla Enter e acionar o login
   $(document).on("keypress", function (e) {
-    if (e.which === 13) { // Código 13 corresponde à tecla Enter
+    if (e.which === 13) {
+      // Código 13 corresponde à tecla Enter
       realizarLogin();
     }
   });
@@ -46,14 +47,14 @@ $(document).ready(function () {
 
 //funcção para icone de mostrar e esconder senha
 const password = document.getElementById("password");
-        const icone = document.getElementById("icones").children[0]; // Pega o <img> dentro do #icones
+const icone = document.getElementById("icones").children[0]; // Pega o <img> dentro do #icones
 
-        function showHide() {
-            if (password.type === "password") {
-                password.setAttribute("type", "text");
-                icone.src = "../../assets/imagens/hide.png"; // Muda para ícone de esconder
-            } else {
-                password.setAttribute("type", "password");
-                icone.src = "../../assets/imagens/show.png"; // Muda para ícone de mostrar
-            }
-        }
+function showHide() {
+  if (password.type === "password") {
+    password.setAttribute("type", "text");
+    icone.src = "../../assets/imagens/hide.png"; // Muda para ícone de esconder
+  } else {
+    password.setAttribute("type", "password");
+    icone.src = "../../assets/imagens/show.png"; // Muda para ícone de mostrar
+  }
+}
