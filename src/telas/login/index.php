@@ -10,7 +10,7 @@ if (isset($_SESSION['loggedIn'])) {
 // Verifica se o formulário de login foi enviado
 if (isset($_POST['login'])) {
 
-    include "../../db/db_connection.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/SM/src/db/db_connection.php";
 
     // Checa a conexão com banco de dados
     if ($connection->connect_error) {
@@ -61,7 +61,7 @@ if (isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../../styles/index.css">
     <title>Login</title>
 
     <!-- Bootstrap -->
@@ -93,6 +93,9 @@ if (isset($_POST['login'])) {
                 <label for="password">Senha:</label>
             </div>
             <center>
+                <div style="padding-bottom:20px;">
+                <a href="esqueceu_senha.php" style="text-decoration:none; color:black;">Esqueceu a senha?</a>
+                </div>
                 <input type="button" value="Entrar" id="login">
             </center>
         </form>
@@ -108,7 +111,7 @@ if (isset($_POST['login'])) {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-    <script src="index.js"></script>
+    <script src="../../js/index.js"></script>
 </body>
 
 </html>
