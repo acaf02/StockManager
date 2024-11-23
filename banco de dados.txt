@@ -18,3 +18,10 @@ CREATE TABLE insumo (
     estoque_medio INT NOT NULL,      -- Estoque médio
     total_consumido INT              -- Quantidade consumida do insumo
 );
+
+-- Tabela Esqueceu_Senha
+CREATE TABLE esuqeceu_senha (
+    id INT PRIMARY KEY,      --Código da Tabela
+    email VARCHAR(255),      -- email do usuario
+    token VARCHAR(255)       -- token para redefinição de senha
+)
