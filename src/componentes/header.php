@@ -1,18 +1,13 @@
 <style>
-    /* Estilos da Navbar */
     .navbar {
         background-color: #ACB2AD;
-        /* Cor padrão da navbar */
         height: 60px;
-        /* Ajusta a altura da navbar */
         padding: 5px 15px;
-        /* Ajusta o padding interno para diminuir a altura */
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
 
-    /* Estilo dos ícones e links dentro da navbar */
     .header-home,
     .header-icon {
         padding-left: 20px;
@@ -75,15 +70,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        /* Centraliza o conteúdo do link */
         width: 100%;
     }
 
     .nav-item i {
         margin-right: 12px;
-        /* Aumentei o espaçamento entre o ícone e o texto */
         font-size: 22px;
-        /* Aumentei o tamanho do ícone */
     }
 </style>
 
