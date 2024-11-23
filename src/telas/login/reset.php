@@ -1,12 +1,12 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHMailer\Exception;
+use PHPMailer\PHPMailer\Exception;
 
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-// Conectar ao banco de dados
+
 include $_SERVER['DOCUMENT_ROOT'] . "/SM/src/db/db_connection.php";
 
 // Verifica se o token foi passado pela URL
@@ -14,11 +14,11 @@ if (isset($_GET['token'])) {
     $token = $_GET['token'];
     $hashedToken = hash('sha256', $token); // Garante que o token seja passado de forma consistente
 
-    // Consulta para verificar se o token existe no banco de dados e não expirou
-    $query = "SELECT * FROM esqueceu_senha WHERE token = '$hashedToken' AND expiration > NOW()";
+    // Consulta para verificar se o token existe no banco de dados
+    $query = "SELECT * FROM esqueceu_senha WHERE token = '$hashedToken'";
     $r = mysqli_query($connection, $query);
 
-    // Verifica se o token é válido e não expirado
+    // Verifica se o token é válido
     if (mysqli_num_rows($r) > 0) {
         // Token válido
         if (isset($_POST['password']) && isset($_POST['confirmPassword'])) {
@@ -37,7 +37,7 @@ if (isset($_GET['token'])) {
                     $res = mysqli_query($connection, $update_query);
 
                     if ($res) {
-                        echo "<script>alert('Senha atualizada com sucesso!'); window.location.href='login.php';</script>";
+                        echo "<script>alert('Senha atualizada com sucesso!'); window.location.href='index.php';</script>";
                     } else {
                         echo "<script>alert('Erro ao atualizar a senha. Tente novamente.');</script>";
                     }
@@ -49,8 +49,8 @@ if (isset($_GET['token'])) {
             }
         }
     } else {
-        // Caso o token seja inválido ou expirado
-        echo "<script>alert('Token inválido ou expirado.');</script>";
+        // Caso o token seja inválido
+        echo "<script>alert('Token inválido.');</script>";
     }
 }
 ?>
@@ -86,7 +86,6 @@ if (isset($_GET['token'])) {
         </div>
 
         <center>
-            <!-- Usando input com type="button" -->
             <input type="button" value="Atualizar Senha" id="update-password-button" onclick="submitForm()">
         </center>
     </form>
