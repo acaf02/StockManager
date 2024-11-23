@@ -62,11 +62,6 @@ html body{
     background-color: #e9ecef;
 }
 
-.table-custom a {
-    color: #212529;
-    text-decoration: none;
-  
-}
 
 .table-custom td a:hover {
     color: #0d6efd;
