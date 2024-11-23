@@ -67,13 +67,14 @@
                         $result_min = mysqli_query($connection, $query_min_quantity);
                         $min_quantity = $result_min ? mysqli_fetch_assoc($result_min)['estoque_min'] : 0;
                         ?>
-                        <tr data-min-quantity="<?php echo htmlspecialchars($min_quantity); ?>">
-                            <td><a href="../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>">
-                                    <?php echo htmlspecialchars($row['produto']); ?>
-                                </a></td>
+                        <tr data-min-quantity="<?php echo htmlspecialchars($min_quantity); ?>"
+                            onclick="window.location.href='../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>'"
+                            style="cursor: pointer;">
+                            <td><?php echo htmlspecialchars($row['produto']); ?></td>
                             <td><?php echo htmlspecialchars($row['peso'] . ' ' . $row['unidade']); ?></td>
                             <td><?php echo htmlspecialchars($row['quantidade']); ?></td>
                         </tr>
+
                         <?php
                     }
                 } else {
@@ -83,7 +84,7 @@
             </tbody>
 
         </table>
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation">
             <ul class="pagination justify-content-end">
 
                 <!-- Botão de Anterior -->
@@ -119,7 +120,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script src="../../js/pesquisa_estoque.js"></script>
-
 
 </body>
 
