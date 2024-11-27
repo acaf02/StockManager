@@ -10,27 +10,26 @@ $("#pesquisar").on("keyup", function () {
       if (data.length > 0) {
         data.forEach(function (insumo) {
           tbody += "<tr>";
-          tbody +=
-            '<td><a href="../visualizar/visualizar.php?cod_insumo=' +
-            insumo.cod_insumo +
-            '" style="color: black;">' +
-            insumo.produto +
-            "</a></td>";
+          tbody += "<td style='color: black;'>" + insumo.produto + "</td>";
           tbody += "<td>" + insumo.peso + " " + insumo.unidade + "</td>";
           tbody += "<td>" + insumo.quantidade + "</td>";
+          
+          // Botões de ações
           tbody +=
             '<td><a href="javascript:void(0)" class="open-modal-adicionar" data-cod_insumo="' +
             insumo.cod_insumo +
             '"><i class="fa-regular fa-square-plus" style="color: green; font-size:20px;"></i></a></td>';
+          
           tbody +=
             '<td><a href="javascript:void(0)" class="open-modal-retirar" data-cod_insumo="' +
             insumo.cod_insumo +
             '"><i class="fa-regular fa-square-minus" style="color: red; font-size:20px;"></i></a></td>';
-            tbody +=
+            
+          tbody +=
             '<td><a href="javascript:void(0)" class="open-modal-editar" data-cod_insumo="' +
             insumo.cod_insumo +
             '"><i class="fa-regular fa-pen-to-square" style="font-size:20px;"></i></a></td>';
-        
+
           tbody += "</tr>";
         });
       } else {
