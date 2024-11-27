@@ -29,8 +29,8 @@ body {
 }
 p {
     padding-bottom: 15px;
-    text-align: justify; /* Adicionando justificação ao texto */
-    text-justify: inter-word; /* Ajusta o espaçamento entre as palavras */
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .user-box input {
@@ -65,7 +65,7 @@ p {
 }
 
 input[type="button"] {
-    background: #006233; /* Um verde suave */
+    background: #006233;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -76,7 +76,7 @@ input[type="button"] {
 }
 
 input[type="button"]:hover {
-    background: #7A9380; /* Um verde levemente mais claro para o hover */
+    background: #7A9380;
 }
 
 .user-box {

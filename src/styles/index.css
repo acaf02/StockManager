@@ -54,7 +54,7 @@ html body{
 }
 
 input[type="button"] {
-    background: #006233; /* Um verde suave */
+    background: #006233;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -65,7 +65,7 @@ input[type="button"] {
 }
 
 input[type="button"]:hover {
-    background: #7A9380; /* Um verde levemente mais claro para o hover */
+    background: #7A9380;
 }
 
 .user-box {
