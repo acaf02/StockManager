@@ -21,7 +21,7 @@
     <div class="container my-4" style="padding-top:65px;">
         <?php
         // Exibe mensagem de alerta, se houver
-        if (isset($_GET['msg'])) {
+        if (isset($_GET['msg']) && !empty($_GET['msg'])) {
             echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
                     ' . htmlspecialchars($_GET['msg']) . '
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -63,16 +63,28 @@
                     while ($row = mysqli_fetch_assoc($result)) {
                         // Carrega a quantidade mínima do banco de dados
                         $cod_insumo = $row['cod_insumo'];
-                        $query_min_quantity = "SELECT estoque_min FROM insumo WHERE cod_insumo = '$cod_insumo'";
+                        $query_min_quantity = "SELECT estoque_min, estoque_medio FROM insumo WHERE cod_insumo = '$cod_insumo'";
                         $result_min = mysqli_query($connection, $query_min_quantity);
-                        $min_quantity = $result_min ? mysqli_fetch_assoc($result_min)['estoque_min'] : 0;
+                        $min_med_quantity = $result_min ? mysqli_fetch_assoc($result_min) : ['estoque_min' => 0, 'estoque_medio' => 0];
+                        $min_quantity = $min_med_quantity['estoque_min'];
+                        $med_quantity = $min_med_quantity['estoque_medio'];
                         ?>
                         <tr data-min-quantity="<?php echo htmlspecialchars($min_quantity); ?>"
                             onclick="window.location.href='../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>'"
                             style="cursor: pointer;">
                             <td><?php echo htmlspecialchars($row['produto']); ?></td>
                             <td><?php echo htmlspecialchars($row['peso'] . ' ' . $row['unidade']); ?></td>
-                            <td><?php echo htmlspecialchars($row['quantidade']); ?></td>
+                            <td>
+                                <?php echo htmlspecialchars($row['quantidade']); ?>
+                                <?php
+                                // Adiciona ícone se a quantidade for menor ou igual à mínima
+                                if ($row['quantidade'] <= $min_quantity) {
+                                    echo ' <i class="fa fa-exclamation-triangle" style="color: red; font-size:20px;"></i>';
+                                } else if ($row['quantidade'] <= $med_quantity) {
+                                    echo ' <i class="fa fa-exclamation-triangle" style="color: orange; font-size:20px;"></i>';
+                                }
+                                ?>
+                            </td>
                         </tr>
 
                         <?php
