@@ -5,7 +5,7 @@ include "verification.php";
 <!-- Modal Adicionar -->
 <div class="modal fade" id="modalAdicionarInsumo" tabindex="-1" aria-labelledby="modalAdicionarInsumoLabel"
     aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalAdicionarInsumoLabel">Adicionar Insumo</h5>
@@ -55,8 +55,6 @@ include "verification.php";
             success: function (data) {
                 if (data.status === 'success') {
                     alert("Insumo adicionado com sucesso!");
-
-                    // Recarrega a página automaticamente após a adição
                     window.location.reload();
                 } else {
                     console.error('Erro:', data.message);
