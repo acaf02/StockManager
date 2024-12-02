@@ -5,8 +5,6 @@ include "../../db/db_connection.php";
 if (!empty($_GET['cod_insumo'])) {
     $cod_insumo = $_GET['cod_insumo'];
 
-    error_log("Código do insumo recebido: " . $cod_insumo); // Log para depuração
-
     $sql = "SELECT * FROM insumo WHERE cod_insumo = ?";
     $stmt = mysqli_prepare($connection, $sql);
     mysqli_stmt_bind_param($stmt, "s", $cod_insumo); // use "i" se for um inteiro
@@ -129,7 +127,6 @@ if (!empty($_GET['cod_insumo'])) {
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="abrir-modal.js"></script>
-</body>
+   
 
 </html>
