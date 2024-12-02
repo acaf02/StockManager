@@ -4,13 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../styles/gerenciar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Dashboard</title>
-    <?php include "../../componentes/headers.php"; ?>
+    
 
 </head>
 
@@ -21,7 +19,6 @@
 
     include_once('../../componentes/header.php');
     include_once('../../componentes/paginacao_pesquisa.php');
-    include_once('../../componentes/filtro.php');
     include_once('modals/adicionar.php');
     include_once('modals/retirar.php');
     include_once('modals/editar.php');
@@ -39,8 +36,7 @@
                 <i class="fa-sharp fa-solid fa-magnifying-glass position-absolute"
                     style="top: 50%; left: 10px; transform: translateY(-50%);"></i>
             </div>
-            <i class="fa fa-sliders filter-icon mx-2" style="font-size:30px; padding:6px;" onclick="abrirFilterPanel()"
-                id="filterIcon"></i>
+            <?php include ('../../componentes/filtro.php'); ?>
         </div>
 
         <table class="table table-hover table-custom text-center">
@@ -58,15 +54,14 @@
                 <?php
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        // Carrega a quantidade mínima do banco de dados
+                        // Carrega a quantidade mínima e média do banco de dados
                         $cod_insumo = $row['cod_insumo'];
-                        $query_min_quantity = "SELECT estoque_min, estoque_medio FROM insumo WHERE cod_insumo = '$cod_insumo'";
-                        $result_min = mysqli_query($connection, $query_min_quantity);
+                        $query_min_med_quantity = "SELECT estoque_min, estoque_medio FROM insumo WHERE cod_insumo = '$cod_insumo'";
+                        $result_min = mysqli_query($connection, $query_min_med_quantity);
                         $min_med_quantity = $result_min ? mysqli_fetch_assoc($result_min) : ['estoque_min' => 0, 'estoque_medio' => 0];
                         $min_quantity = $min_med_quantity['estoque_min'];
                         $med_quantity = $min_med_quantity['estoque_medio'];
                         ?>
-
                         <tr>
                             <td><a href="../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>">
                                     <?php echo htmlspecialchars($row['produto']); ?>
@@ -75,7 +70,7 @@
                             <td>
                                 <?php echo htmlspecialchars($row['quantidade']); ?>
                                 <?php
-                                // Adiciona ícone se a quantidade for menor ou igual à mínima
+                                // Adiciona ícone se a quantidade for menor ou igual à mínima, se não adiciona o icone se a quantidade for manor ou igual a média
                                 if ($row['quantidade'] <= $min_quantity) {
                                     echo ' <i class="fa fa-exclamation-triangle" style="color: red; font-size:20px;"></i>';
                                 } else if ($row['quantidade'] <= $med_quantity) {
@@ -111,7 +106,7 @@
             </tbody>
         </table>
 
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation">
             <ul class="pagination justify-content-end">
 
                 <!-- Botão de Anterior -->
@@ -145,8 +140,8 @@
         </nav>
 
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../../js/gerenciar.js"></script>
     <script src="../../js/abrir-modal-editar.js"></script>
     <script src="../../js/pesquisa_gerenciar.js"></script>

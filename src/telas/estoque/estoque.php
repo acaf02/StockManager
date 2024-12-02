@@ -15,7 +15,6 @@
     <?php
     include_once('../../componentes/header.php');
     include_once('../../componentes/paginacao_pesquisa.php');
-    include_once('../../componentes/filtro.php');
     ?>
 
     <div class="container my-4" style="padding-top:65px;">
@@ -42,9 +41,7 @@
                     style="top: 50%; left: 10px; transform: translateY(-50%);"></i>
             </div>
 
-            <i class="fa fa-sliders filter-icon mx-2"
-                style="font-size:30px; padding:6px; position: relative; display: inline-block;"
-                onclick="abrirFilterPanel()" id="filterIcon"></i>
+            <?php include ('../../componentes/filtro.php'); ?>
 
         </div>
 
@@ -61,23 +58,22 @@
                 // Exibe os dados em uma tabela
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        // Carrega a quantidade mínima do banco de dados
+                        // Carrega a quantidade mínima e média do banco de dados
                         $cod_insumo = $row['cod_insumo'];
-                        $query_min_quantity = "SELECT estoque_min, estoque_medio FROM insumo WHERE cod_insumo = '$cod_insumo'";
-                        $result_min = mysqli_query($connection, $query_min_quantity);
+                        $query_min_med_quantity = "SELECT estoque_min, estoque_medio FROM insumo WHERE cod_insumo = '$cod_insumo'";
+                        $result_min = mysqli_query($connection, $query_min_med_quantity);
                         $min_med_quantity = $result_min ? mysqli_fetch_assoc($result_min) : ['estoque_min' => 0, 'estoque_medio' => 0];
                         $min_quantity = $min_med_quantity['estoque_min'];
                         $med_quantity = $min_med_quantity['estoque_medio'];
                         ?>
-                        <tr data-min-quantity="<?php echo htmlspecialchars($min_quantity); ?>"
-                            onclick="window.location.href='../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>'"
+                        <tr onclick="window.location.href='../visualizar/visualizar.php?cod_insumo=<?php echo $row['cod_insumo']; ?>'"
                             style="cursor: pointer;">
                             <td><?php echo htmlspecialchars($row['produto']); ?></td>
                             <td><?php echo htmlspecialchars($row['peso'] . ' ' . $row['unidade']); ?></td>
                             <td>
                                 <?php echo htmlspecialchars($row['quantidade']); ?>
                                 <?php
-                                // Adiciona ícone se a quantidade for menor ou igual à mínima
+                                // Adiciona ícone se a quantidade for menor ou igual à mínima, se não adiciona o icone se a quantidade for manor ou igual a média
                                 if ($row['quantidade'] <= $min_quantity) {
                                     echo ' <i class="fa fa-exclamation-triangle" style="color: red; font-size:20px;"></i>';
                                 } else if ($row['quantidade'] <= $med_quantity) {
@@ -94,11 +90,10 @@
                 }
                 ?>
             </tbody>
-
         </table>
+
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-end">
-
                 <!-- Botão de Anterior -->
                 <li class="page-item <?= $page == 1 ? 'disabled' : ''; ?>">
                     <a class="page-link"
