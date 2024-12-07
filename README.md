@@ -24,7 +24,7 @@ A aplicação foi projetada pensando no refeitório do Instituto Federal Farroup
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas para as seguintes tarefas:
 
-- [] Ter uma opção de filtro para obter mais facilidade na hora de ver quais itens estão com baixa ou média quantidade.
+- [ ] Ter uma opção de filtro para obter mais facilidade na hora de ver quais itens estão com baixa ou média quantidade.
 
 
 ---
@@ -33,12 +33,18 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 
 Este projeto utiliza as seguintes tecnologias:
 
-- **Frontend**: React.js, HTML5, CSS3, Bootstrap
-- **Backend**: Node.js, Express.js, GraphQL
-- **Banco de Dados**: MongoDB, Redis
-- **Autenticação**: JWT
-- **Testes**: Jest, Cypress
-- **Outros**: Docker, Nginx
+- **Frontend**: ![HTML5](https://img.shields.io/badge/HTML5-orange?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-blue?logo=css3&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-purple?logo=bootstrap&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-yellow?logo=javascript&logoColor=white)
+![JQuery](https://img.shields.io/badge/JQuery-blue?logo=jquery&logoColor=white)
+![Ajax](https://img.shields.io/badge/Ajax-blue?logo=javascript&logoColor=white)
+
+- **Backend**: ![PHP](https://img.shields.io/badge/PHP-purple?logo=php&logoColor=white)
+
+- **Banco de Dados**: ![MySQL](https://img.shields.io/badge/MySQL-blue?logo=mysql&logoColor=white)
+
+- **Servidor Local**: ![XAMPP](https://img.shields.io/badge/XAMPP-orange?logo=xampp&logoColor=white)
 
 ---
 
