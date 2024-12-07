@@ -73,7 +73,7 @@
                             <td>
                                 <?php echo htmlspecialchars($row['quantidade']); ?>
                                 <?php
-                                // Adiciona ícone se a quantidade for menor ou igual à mínima, se não adiciona o icone se a quantidade for manor ou igual a média
+                                // Adiciona ícone se a quantidade for menor ou igual à mínima, se não adiciona o icone se a quantidade for menor ou igual a média
                                 if ($row['quantidade'] <= $min_quantity) {
                                     echo ' <i class="fa fa-exclamation-triangle" style="color: red; font-size:20px;"></i>';
                                 } else if ($row['quantidade'] <= $med_quantity) {
