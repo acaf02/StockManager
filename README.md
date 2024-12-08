@@ -102,6 +102,6 @@ Acesse o sistema no navegador em: http://localhost/SM
 
 ## 📜 Licença
 
-Este projeto está sob a Licença Apache-2.0 Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
+Este projeto está sob a Licença Apache-2.0 Veja o arquivo [LICENÇA](LICENSE) para mais detalhes.
 
 ### ⭐ Gostou do projeto? Deixe uma estrela para ajudar a comunidade!
