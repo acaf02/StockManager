@@ -1,5 +1,5 @@
 <?php
-// Conexão com o banco de dados
+
 include $_SERVER['DOCUMENT_ROOT'] . "/SM/src/db/db_connection.php";
 
 // Consultar os insumos mais consumidos
@@ -32,7 +32,6 @@ while ($row = $result_less->fetch_assoc()) {
     $data_less[] = [$row['produto'], (int) $row['total_consumido']];
 }
 
-// Fechar a conexão com o banco de dados
 $connection->close();
 ?>
 
@@ -58,8 +57,8 @@ $connection->close();
         }
 
         h1 {
-            padding-top: 30px; /* Espaço entre o header e o título */
-            font-size: 1.8rem; /* Redução no tamanho da fonte do título */
+            padding-top: 30px;
+            font-size: 1.8rem; 
         }
     </style>
 </head>
