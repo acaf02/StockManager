@@ -49,7 +49,7 @@
                     <img class="card-img-top" src="../../assets/imagens/relatorio.png" alt="Relatórios">
                     <h5 class="card-title">Estatísticas</h5>
                     <p class="card-text">Este relatório mostra quais são os itens mais e menos consumidos.</p>
-                    <a href="pdf/estatisticas.php" class="btn btn-primary btn-sm me-2">Baixar</a>
+                    <a href="estatisticas.php" class="btn btn-primary btn-sm me-2">Baixar</a>
                 </div>
             </div>
         </div>
