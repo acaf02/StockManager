@@ -90,7 +90,7 @@ mysqli_close($connection);
 
                     <div class="col mb-3">
                         <label class="form-label">Peso</label>
-                        <input type="number" class="form-control" id="peso" name="peso" placeholder="Ex: 5" required>
+                        <input type="number" class="form-control" id="peso" name="peso" placeholder="Ex: 5">
                     </div>
 
                     <div class="col mb-3">
@@ -105,6 +105,7 @@ mysqli_close($connection);
                             <option value="un">un</option>
                             <option value="m">m</option>
                             <option value="cm">cm</option>
+                            <option value="dúzia">dúzia</option>
                         </select>
                     </div>
                     <div class="col mb-3">
