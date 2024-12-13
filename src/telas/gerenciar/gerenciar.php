@@ -7,15 +7,14 @@
     <link rel="stylesheet" href="../../styles/gerenciar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Dashboard</title>
-    
 
 </head>
 
 <body>
 
     <?php
-
 
     include_once('../../componentes/header.php');
     include_once('../../componentes/paginacao_pesquisa.php');
@@ -36,7 +35,7 @@
                 <i class="fa-sharp fa-solid fa-magnifying-glass position-absolute"
                     style="top: 50%; left: 10px; transform: translateY(-50%);"></i>
             </div>
-            <?php include ('../../componentes/filtro.php'); ?>
+            <?php include('../../componentes/filtro.php'); ?>
         </div>
 
         <table class="table table-hover table-custom text-center">
@@ -140,8 +139,7 @@
         </nav>
 
     </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/gerenciar.js"></script>
     <script src="../../js/abrir-modal-editar.js"></script>
     <script src="../../js/pesquisa_gerenciar.js"></script>

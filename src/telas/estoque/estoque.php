@@ -41,7 +41,7 @@
                     style="top: 50%; left: 10px; transform: translateY(-50%);"></i>
             </div>
 
-            <?php include ('../../componentes/filtro.php'); ?>
+            <?php include('../../componentes/filtro.php'); ?>
 
         </div>
 
