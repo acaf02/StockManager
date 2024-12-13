@@ -22,10 +22,7 @@ A aplicação foi projetada pensando no refeitório do Instituto Federal Farroup
 ---
 ## 🟢 Status do Projeto
 
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas para as seguintes tarefas:
-
-- [ ] Ter uma opção de filtro para obter mais facilidade na hora de ver quais itens estão com baixa ou média quantidade.
-
+O projeto ainda está em finalizado.
 
 ---
 
