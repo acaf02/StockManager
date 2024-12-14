@@ -3,6 +3,7 @@ $order_clause = "";
 $where_clause = "";
 $selected_text = "Classificar por: Estoque Completo";
 
+// Verificação de ordenação
 if (isset($_GET['ordenar'])) {
     $ordenar = mysqli_real_escape_string($connection, $_GET['ordenar']);
 
@@ -22,7 +23,12 @@ if (isset($_GET['ordenar'])) {
     $order_clause = "ORDER BY produto ASC";
 }
 
-// Consulta SQL completa
+// Páginação: Número de itens por página
+$limit = 12;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+// Consulta SQL para os itens com filtro, ordenação e paginação
 $query = "SELECT * FROM insumo";
 
 if ($where_clause) {
@@ -33,12 +39,24 @@ if ($order_clause) {
     $query .= " " . $order_clause;
 }
 
+$query .= " LIMIT $limit OFFSET $offset";  // Paginação adicionada
+
 $result = mysqli_query($connection, $query);
 
 if (!$result) {
     die("Erro ao buscar dados: " . mysqli_error($connection));
 }
+
+// Consulta SQL para total de itens (sem a cláusula LIMIT)
+$query_total = "SELECT COUNT(*) as total FROM insumo";
+if ($where_clause) {
+    $query_total .= " " . $where_clause;
+}
+$result_total = mysqli_query($connection, $query_total);
+$total_items = mysqli_fetch_assoc($result_total)['total'];
+$total_pages = ceil($total_items / $limit);
 ?>
+
 
 <style>
     .dropdown {

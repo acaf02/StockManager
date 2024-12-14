@@ -33,7 +33,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/SM/src/db/db_connection.php";
 $pesquisar = !empty($_GET['pesquisar']) ? mysqli_real_escape_string($connection, $_GET['pesquisar']) : '';
 
 
-$limit = 10;
+$limit = 12;
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
