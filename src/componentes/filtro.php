@@ -64,7 +64,7 @@ if (!$result) {
         <!-- Opção para mostrar o estoque completo -->
         <li>
             <a class="dropdown-item" href="?ordenar=tudo">
-                <i class="fas fa-list"></i> Mostrar Estoque Completo
+                <i class="fas fa-list"></i> Estoque Completo
             </a>
         </li>
         <!-- Opção de alerta de quantidade média -->
