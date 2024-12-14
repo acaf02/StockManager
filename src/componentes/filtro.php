@@ -47,7 +47,7 @@ if (!$result) {
     die("Erro ao buscar dados: " . mysqli_error($connection));
 }
 
-// Consulta SQL para total de itens (sem a cláusula LIMIT)
+// Consulta SQL para total de itens
 $query_total = "SELECT COUNT(*) as total FROM insumo";
 if ($where_clause) {
     $query_total .= " " . $where_clause;
