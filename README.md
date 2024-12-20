@@ -2,8 +2,6 @@
 
 ## 🛠️ Sobre o Projeto
 
-![Imagem do Sistema](imagem.png) 
-
 > Stock Manager é uma aplicação web desenvolvida como Projeto de Conclusão de Curso (TCC) para gerenciar o controle de estoque de suprimentos no Instituto Federal Farroupilha - Campus Alegrete. O sistema visa facilitar a gestão do inventário, permitindo que os usuários registrem, editem, visualizem suprimentos e gerem relatórios de forma eficiente. 
 
 ---
@@ -72,29 +70,31 @@ npm install
 
 ```
 
-## 🚀 Uso
+## 🚀 Configurações de Uso
 
 Este projeto oferece funcionalidades principais como:
-- Gerenciamento de Estoque: Adicione, edite e remova insumos de forma simples.
-- Relatórios Dinâmicos: Visualize itens mais e menos consumidos.
-- Filtros Inteligentes: Localize rapidamente itens com estoques baixos.
+
+    - Gerenciamento de Estoque: Adicione, edite e remova insumos de forma simples.
+    - Relatórios Dinâmicos: Visualize itens mais e menos consumidos.
+    - Filtros Inteligentes: Localize rapidamente itens com estoques baixos.
 
 
-Depois de instalar o projeto, você pode rodá-lo com o seguinte comando:
+1. Copie os arquivos do projeto para a pasta htdocs do XAMPP.
 
-Copie os arquivos do projeto para a pasta htdocs do XAMPP.
+2. Importe o banco de dados:
 
-Importe o banco de dados:
+    2.1. Acesse o phpMyAdmin em http://localhost/phpmyadmin.
+    
+    2.2. Crie um banco de dados chamado SM.
 
-    Acesse o phpMyAdmin em http://localhost/phpmyadmin.
-    Crie um banco de dados chamado SM.
-    Importe o arquivo banco de dados.txt fornecido no repositório.
+    2.3. Importe o arquivo banco de dados.txt fornecido no repositório.
 
-Configure o arquivo db.connection.php com as credenciais do banco de dados, se necessário.
 
-Inicie o Apache e o MySQL no painel de controle do XAMPP.
+3. Configure o arquivo db.connection.php com as credenciais do banco de dados, se necessário.
 
-Acesse o sistema no navegador em: http://localhost/SM
+4. Inicie o Apache e o MySQL no painel de controle do XAMPP.
+
+    Acesse o sistema no navegador em: http://localhost/SM
 
 
 ## 📜 Licença
