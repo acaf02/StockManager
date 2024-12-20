@@ -11,13 +11,16 @@ use Dompdf\Dompdf;
 
 $dompdf = new Dompdf(['enable_remote' => true]);
 
+// Definir orientação para paisagem
+$dompdf->setPaper('A4', 'landscape');
+
 // Carregar e converter a imagem do logo para base64
 $logoPath = $_SERVER['DOCUMENT_ROOT'] . "/SM/src/assets/imagens/LogoSM.jpg";
 $type = pathinfo($logoPath, PATHINFO_EXTENSION);
 $data = file_get_contents($logoPath);
 $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-$html = ''; 
+$html = '';
 
 $html .= '
     <div style="text-align: center; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;"> 
