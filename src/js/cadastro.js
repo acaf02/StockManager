@@ -9,8 +9,8 @@ $(document).ready(function () {
       type: "POST",
       url: "cadastro.php",
       data: formData,
-      processData: false, // Necessário para enviar objetos FormData
-      contentType: false, // Necessário para não definir um cabeçalho de conteúdo default
+      processData: false, 
+      contentType: false, 
       dataType: "json",
       success: function (response) {
         if (response.success) {

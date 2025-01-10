@@ -1,6 +1,5 @@
 $("#pesquisar").on("keyup", function () {
   var pesquisa = $(this).val();
-  console.log('Pesquisando por:', pesquisa);  // Depuração
 
   $.ajax({
     url: "../../componentes/pesquisa.php",
@@ -8,7 +7,6 @@ $("#pesquisar").on("keyup", function () {
     data: { palavra: pesquisa },
     dataType: "json",
     success: function (data) {
-      console.log('Resultado da pesquisa:', data);  // Depuração
 
       var tbody = "";
       if (data.length > 0) {

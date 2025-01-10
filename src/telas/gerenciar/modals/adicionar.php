@@ -15,7 +15,6 @@ include "verification.php";
                 <!-- Campo para adicionar a quantidade -->
                 <div class="mb-3">
                     <label for="quantidade" class="form-label">Quantidade</label>
-                    <!-- O ID do campo quantidade agora é dinâmico com base no cod_insumo -->
                     <input type="number" class="form-control" id="quantidade_modal" placeholder="Digite a quantidade"
                         required>
                 </div>

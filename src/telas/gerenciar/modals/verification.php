@@ -1,11 +1,8 @@
 <?php
-// Alterar a cada modificação entre máquinas diferentes
 include $_SERVER['DOCUMENT_ROOT'] . "/SM/src/db/db_connection.php";
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Verificar se os dados estão chegando corretamente
-    // Foram passados como argumento: quantidade, código do insumo e a operação a ser realizada
     if (isset($_POST['quantidade'], $_POST['cod_insumo'], $_POST['operation'])) {
         $quantidade = (int) $_POST['quantidade'];
         $cod_insumo = (int) $_POST['cod_insumo'];

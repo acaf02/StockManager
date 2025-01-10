@@ -39,7 +39,7 @@ if ($order_clause) {
     $query .= " " . $order_clause;
 }
 
-$query .= " LIMIT $limit OFFSET $offset";  // Paginação adicionada
+$query .= " LIMIT $limit OFFSET $offset"; 
 
 $result = mysqli_query($connection, $query);
 

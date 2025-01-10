@@ -21,7 +21,7 @@ if (isset($_POST['login'])) {
     $senha = $_POST['password']; // Obtém a senha
 
     // Consulta SQL para selecionar o usuário
-    $query = "SELECT senha FROM login WHERE login_funcionario = ?";
+    $query = "SELECT senha FROM funcionario WHERE login_funcionario = ?";
     $stmt = $connection->prepare($query);
 
     if (!$stmt) {

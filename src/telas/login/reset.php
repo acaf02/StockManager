@@ -33,7 +33,7 @@ if (isset($_GET['token'])) {
                     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
                     // Atualiza a senha no banco de dados
-                    $update_query = "UPDATE login SET senha = '$hashedPassword' WHERE email = (SELECT email FROM esqueceu_senha WHERE token = '$hashedToken')";
+                    $update_query = "UPDATE funcionario SET senha = '$hashedPassword' WHERE email = (SELECT email FROM esqueceu_senha WHERE token = '$hashedToken')";
                     $res = mysqli_query($connection, $update_query);
 
                     if ($res) {

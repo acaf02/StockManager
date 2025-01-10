@@ -1,5 +1,5 @@
 -- Tabela de Login
-CREATE TABLE login (
+CREATE TABLE funcionario (
     cod_funcionario INT PRIMARY KEY,         -- Código do funcionário
     login_funcionario VARCHAR(50) NOT NULL,  -- Login do funcionário
     senha VARCHAR(50) NOT NULL,              -- Senha

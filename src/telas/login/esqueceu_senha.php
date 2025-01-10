@@ -20,7 +20,7 @@ if (isset($_POST['email'])) {
         $mensagem = "O campo de e-mail está vazio.";
     } else {
         // Consulta para verificar se o e-mail existe no banco de dados
-        $query = "SELECT * FROM login WHERE email = '$email'";
+        $query = "SELECT * FROM funcionario WHERE email = '$email'";
         $r = mysqli_query($connection, $query);
 
         if (mysqli_num_rows($r) > 0) {
@@ -40,10 +40,10 @@ if (isset($_POST['email'])) {
                     $mail->isSMTP();  // Define que estamos usando SMTP
                     $mail->Host = 'smtp.gmail.com';  // Usando o servidor SMTP do Gmail
                     $mail->SMTPAuth = true;  // Ativa autenticação SMTP
-                    $mail->Username = 'seu-email@gmail.com';  // Seu e-mail do Gmail
-                    $mail->Password = 'sua-senha';  // Senha do e-mail (ou senha de aplicativo)
+                    $mail->Username = 'anacarol.farias11@gmail.com';  // Seu e-mail do Gmail
+                    $mail->Password = 'gynaefjniclkgnly';  // Senha do e-mail (ou senha de aplicativo)
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Usando SSL
-                    $mail->Port = 465; // Porta SSL (geralmente 465 para SSL)
+                    $mail->Port = 465; // Porta SSL 
 
                     // Remetente
                     $mail->setFrom('no-reply@stockmanager.com', 'Redefinição de Senha');
