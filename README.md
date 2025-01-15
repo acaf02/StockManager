@@ -20,7 +20,7 @@ A aplicação foi projetada pensando no refeitório do Instituto Federal Farroup
 ---
 ## 🟢 Status do Projeto
 
-O projeto ainda está em finalizado.
+O projeto está finalizado.
 
 ---
 
