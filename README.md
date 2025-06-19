@@ -56,7 +56,7 @@ Certifique-se de que você tem os seguintes itens instalados no seu ambiente:
 
 ```bash
 git clone https://github.com/acaf02/StockManager.git
-cd projeto
+cd stockmanager
 yarn install
 
 ```
@@ -65,7 +65,7 @@ yarn install
 
 ```bash
 git clone https://github.com/acaf02/StockManager.git
-cd projeto
+cd stockmanager
 npm install
 
 ```
